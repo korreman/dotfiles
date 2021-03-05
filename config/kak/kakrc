@@ -1,0 +1,86 @@
+##### LANGUAGE SERVER PROTOCOL #####
+eval %sh{kak-lsp --kakoune -s $kak_session}
+
+#set-option global lsp_diagnostic_line_warning_sign " "
+#set-option global lsp_hover_anchor true
+set-option global lsp_insert_spaces true
+hook global WinSetOption filetype=(rust) %{
+    lsp-enable-window
+    set-option global lsp_diagnostic_line_error_sign "→"
+    lsp-diagnostic-lines-disable window
+}
+
+##### KEYMAPS #####
+
+# Not mapped: Y D # ^ = + <del> <backspace> <ins> <ret>
+# Not utilized: { } < >
+
+map -docstring "repeat the last insert mode change" global normal "=" "."
+map -docstring "enter LSP mode" global normal "." ":enter-user-mode lsp<ret>"
+map -docstring "unselect surrounding whitespace" global normal <minus> _
+
+### Regions
+map -docstring "select inner region" global normal '"' <a-i>
+map -docstring "select whole region" global normal "'" <a-a>
+map -docstring "choose a register for the next operation" global normal = '"'
+
+# we don't need three keybinds for every object to select, so we remap selections to first-layer symbols
+map -docstring "double quote string" global object q '"'
+map -docstring "brackets block" global object b B
+map -docstring "paragraph" global object g p
+map -docstring "parenthesis block" global object p "("
+
+### Tabs
+# tab always indents (unless it has something better to do)
+set-option global indentwidth 4
+map global normal <tab> "<gt>"
+map global normal <s-tab> "<lt>"
+map global insert <tab> "<a-;><gt>"
+map global insert <s-tab> "<a-;><lt>"
+
+# tab/s-tab autocompletes, but revert to previous behavior when there are no suggestions
+hook global InsertCompletionShow .* %{
+    map window insert <tab> <c-n>;
+    map window insert <s-tab> <c-p>
+}
+
+hook global InsertCompletionHide .* %{
+    unmap window insert <tab> <c-n>;
+    unmap window insert <s-tab> <c-p>
+}
+
+# Change the behavior of line selection
+# 'x' will never select the next line
+# 'X' is unchanged, so holding down will still extend a downward
+# '<a-x>' is mapped to be useful for replacing a line
+map global normal x <a-x>
+map global normal <a-x> giGl
+
+# yanking and putting to clipboard
+map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
+map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
+
+# remove trailing whitespace
+map -docstring "remove trailing whitespace (bufferwide)" global user w 'Z%s +\n<ret>Hd z'
+
+##### COSMETICS #####
+colorscheme korreman
+
+### practical cosmetics ###
+# prompt position, disable mouse input, remove clippy art
+set global ui_options ncurses_assistant=none ncurses_status_on_top=true ncurses_enable_mouse=false
+# line numbers
+add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " "
+# keep a few lines above/below cursor when scrolling
+set-option global scrolloff 3,0
+# wraps lines, preserving words
+add-highlighter global/ wrap -word -indent
+# show matching brackets
+add-highlighter global/ show-matching
+# show tabs, non-breaking spaces, etc
+add-highlighter global/ show-whitespaces -lf " " -spc " "
+# highlight comment keywords
+add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+r
+# highlight trailing whitespace
+add-highlighter global/ regex \h+$ 0:Error
+

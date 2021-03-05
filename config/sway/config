@@ -1,0 +1,259 @@
+input * {
+    xkb_layout "us"
+    xkb_variant "altgr-intl"
+    xkb_options "caps:escape_shifted_capslock"
+    repeat_delay 200
+    repeat_rate 30
+    xkb_numlock enable
+}
+
+input type:touchpad {
+    tap enabled
+    pointer_accel 0.3
+    tap_button_map lmr
+}
+
+output eDP-1 scale 1.5
+
+# GTK theming
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Arc'
+    gsettings set $gnome-schema icon-theme 'Arc'
+    gsettings set $gnome-schema cursor-theme 'Arc'
+    gsettings set $gnome-schema font-name 'Cantarell 11'
+}
+
+# colors
+set $black #000000
+set $white #ffffff
+set $text #5c616c
+set $dim_fg #7d8189
+set $dim_bg #d9dde0
+set $bright_fg #f5f6f8
+set $selected #5294e2
+set $border #b9bec7
+set $attention #bef2cc
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+set $bar_bg #ffffffaa
+bar {
+    position top
+    status_command i3status
+    separator_symbol " | "
+
+    font pango: Dejavu Sans Mono, Font Awesome 5 Free 10
+    icon_theme "Arc"
+
+    colors {
+        background         $bar_bg
+        statusline         $black
+        separator          $dim_fg
+
+        focused_workspace  $selected  $selected  $white
+        active_workspace   $bright_fg $bright_fg $dim_fg
+        inactive_workspace $bar_bg    $bar_bg    $black
+        urgent_workspace   $attention $attention $dim_fg
+        binding_mode       $attention $attention $dim_fg
+    }
+}
+
+font pango: Cantarell 11
+
+# class                 title_border background text   placement window_border
+client.focused          $selected    $selected  $white $selected $selected
+client.focused_inactive $border      $bright_fg $text  $selected $border
+client.unfocused        $border      $dim_bg    $text  $selected $border
+client.urgent           $border      $attention $text  $selected $border
+
+# default layout
+titlebar_border_thickness 1
+titlebar_padding 4 2
+title_align center
+default_border pixel 2
+hide_edge_borders --i3 smart_no_gaps
+
+output * bg "~/pictures/wallpapers/beacons.jpg" fill
+
+##### STARTUP COMMANDS #####
+exec "bash ~/.config/sway/bg_gallery.sh" # script to change background periodically
+exec "mako" # notifications
+
+##### KEYBINDS #####
+default_orientation horizontal
+workspace_layout default
+focus_on_window_activation urgent
+
+# moving the mouse always causes the container underneath to focus
+focus_follows_mouse always
+# move mouse to newly focused container
+mouse_warping container
+# wraps around local focus switches within a container. focus parent container to escape
+focus_wrapping force
+
+### High Level Binds ###
+set $mod Mod4
+set $term alacritty
+set $menu wofi --show=drun
+
+# reload the configuration file
+bindsym $mod+Shift+r reload
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit'
+
+# custom keybinds
+bindsym $mod+Return exec $term
+bindsym Print exec grimshot copy area
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl set 5%+"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl set 5%-"
+
+bindsym Ctrl+Mod1+Left  exec swaymsg -- output - transform 270
+bindsym Ctrl+Mod1+Right exec swaymsg -- output - transform  90
+bindsym Ctrl+Mod1+Up    exec swaymsg -- output - transform   0
+bindsym Ctrl+Mod1+Down  exec swaymsg -- output - transform 180
+
+bindsym $mod+n exec --no-startup-id "brightnessctl set 1"
+bindsym $mod+b exec --no-startup-id "brightnessctl set 100%"
+
+
+bindsym $mod+m exec --no-startup-id "swaylock"
+bindswitch lid:on exec swaylock
+
+### Container Manipulating Binds ###
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod normal
+
+# kill focused window
+bindsym --no-repeat $mod+Shift+q kill
+bindsym --no-repeat BTN_MIDDLE kill
+
+# start program launcher
+bindsym $mod+d exec $menu
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# subdivides the container, alternating between vertically and horizontally
+bindsym $mod+s split toggle
+
+# subdivides the container into tabs
+bindsym $mod+w split toggle; layout tabbed
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+t layout toggle tabbed splitv splith
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+c focus child
+
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+x move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+z scratchpad show
+
+# Puts the next scratchpad window in the current position
+bindsym $mod+v scratchpad show; floating toggle
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width  10 px or 8 ppt
+        bindsym j resize shrink height 10 px or 8 ppt
+        bindsym k resize grow   height 10 px or 8 ppt
+        bindsym l resize grow   width  10 px or 8 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left  resize shrink width  10 px or 8 ppt
+        bindsym Down  resize grow   height 10 px or 8 ppt
+        bindsym Up    resize shrink height 10 px or 8 ppt
+        bindsym Right resize grow   width  10 px or 8 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"

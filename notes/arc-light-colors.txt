@@ -1,0 +1,68 @@
+background/foreground              #5c616c
+active                             #5294e2
+background                         #f5f6f7
+background active                  #d9dde0
+
+button osd disabled                #5d626e
+
+background disabled                #fbfbfc
+textview border background         #fafbfb
+rubberband border                  #2679db
+assitant border top                #dcdfe3
+
+xfce notify window                 #bac3cf
+xfce notify window background      #353945
+
+entry border                       #cfd6e6
+entry image                        #7d8189
+entry warning border               #f27835
+entry warning bg                   #f7ae86
+entry error border                 #fc4138
+entry error bg                     #fd8d88
+entry drop active                  #f08437
+entry osd                          #bac3cf
+
+
+button suggested action            #4dadd4
+button suggested action hover      #76c0de
+button suggested active/checked    #2e96c0
+button destructive action          #f04a50
+button destructive action bg       #f4797e
+button destructive active/checked  #ec1b22
+
+menuitem button flat hover bg      #edeff0
+button link visited                #2679db
+-||-                               #1e61b0
+-||-                               #bad4f3
+hover                              #eef4fc
+active                             #dceaf9
+
+primary toolbar bg                 #e7e8eb
+inline toolbar bg                  #edeef0
+inline toolbar border              #dcdfe3
+
+titlebar border                    #d4d5db
+titlebar bg                        #eff0f2
+
+headerbar buncha rules             #f75d37
+button suggested hover             #76c0de
+more button bg                     #2e96c0
+
+more button destructive            #f4797e
+more button destructive            #ec1b22
+
+treeview selected border           #a9caf1
+treeview view disabled             #97bfee
+treeview drop active               #577ba7
+treeview expander                  #aeb0b6
+treeview expander selected         #cbdff6
+
+popover bg border                  #cdd2d7
+notebook tab button hover          #ff4d4d
+
+scrollbar bg                       #fcfcfc
+scrollbar slider bg                #b8babf
+scrollbar slider hover bg          #c7c9cd
+scrollbar overlay indicator slider #8a8e96
+
+menuitem trough highlight bg       #b1cff2
