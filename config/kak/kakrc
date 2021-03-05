@@ -61,7 +61,7 @@ map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
 map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
 
 # remove trailing whitespace
-map -docstring "remove trailing whitespace (bufferwide)" global user w 'Z%s +\n<ret>Hd z'
+map -docstring "remove trailing whitespace (bufferwide)" global user w 'Z%s +\n<ret>Hd z: nop<ret>'
 
 ##### COSMETICS #####
 colorscheme korreman
