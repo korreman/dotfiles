@@ -8,7 +8,7 @@
 # 4. Bright colors do not have to contrast with bright-white
 
 # Code
-face global value blue
+face global value blue+u
 face global string yellow
 
 face global module bright-black

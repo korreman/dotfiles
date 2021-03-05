@@ -1,5 +1,6 @@
 set guioptions "vh"
 set statusbar-home-tilde true
+set page-padding 16
 
 set font "Cantarell 11"
 
@@ -8,7 +9,7 @@ set highlight-active-color "#5294ef"
 set highlight-transparency 0.7
 
 set default-fg "#5c616c"
-set default-bg "#f5f6f7"
+set default-bg "#e3e7eb"
 
 set completion-fg "#5c616c"
 set completion-bg "#ffffff"
