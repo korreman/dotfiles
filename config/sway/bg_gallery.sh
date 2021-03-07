@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sleep_time=3600
+sleep_time=5
 wallpaper_path=~/pictures/wallpapers/
 sleep 2
 while true

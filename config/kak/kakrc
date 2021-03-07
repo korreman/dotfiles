@@ -31,19 +31,21 @@ map -docstring "paragraph" global object g p
 map -docstring "parenthesis block" global object p "("
 
 ### Tabs
-# tab always indents (unless it has something better to do)
+# tab indents both in normal mode and insert mode
 set-option global indentwidth 4
 map global normal <tab> "<gt>"
 map global normal <s-tab> "<lt>"
-map global insert <tab> "<a-;><gt>"
-map global insert <s-tab> "<a-;><lt>"
+# also indent whitespace lines in insert mode
+map global insert <tab> "<a-;><a-gt>"
+map global insert <s-tab> "<a-;><a-lt>"
 
-# tab/s-tab autocompletes, but revert to previous behavior when there are no suggestions
+# if a completion prompt is visible, tab will go to the next completion candidate
 hook global InsertCompletionShow .* %{
     map window insert <tab> <c-n>;
     map window insert <s-tab> <c-p>
 }
 
+# once the hook disappears, revert the behavior of tabs
 hook global InsertCompletionHide .* %{
     unmap window insert <tab> <c-n>;
     unmap window insert <s-tab> <c-p>

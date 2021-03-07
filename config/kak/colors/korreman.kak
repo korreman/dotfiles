@@ -7,7 +7,7 @@
 # 3. Bright colors stand in contrast to black
 # 4. Bright colors do not have to contrast with bright-white
 
-# Code
+### Code ###
 face global value blue+u
 face global string yellow
 
@@ -24,9 +24,11 @@ face global documentation bright-black
 face global variable default
 face global function default
 face global operator default
+
+# I'd love to use this, but seems to be abused in syntax highlighting
 face global meta default
 
-# Markup
+### Markup ###
 face global title default+bu
 face global header default+bu
 face global mono green,default
@@ -35,7 +37,9 @@ face global link blue+u
 face global bullet default+b
 face global list default+b
 
-# Language Server Protocol (kak-lsp)
+face global conceal bright-white,default
+
+### Language Server Protocol (kak-lsp) ###
 face global Reference default,white
 face global DiagnosticError default,bright-red
 face global DiagnosticWarning default
@@ -44,7 +48,7 @@ face global InlayHint default+fg
 face global SnippetsNextPlaceholders default+fg
 face global SnippetsOtherPlaceholders default+fg
 
-# UI faces
+### UI faces ###
 face global Default default,default
 
 face global PrimaryCursor bright-white,blue+fg

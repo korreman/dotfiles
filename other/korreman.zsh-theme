@@ -38,6 +38,5 @@ color_line() {
     echo "%{\e[47m%}%E{%\e[0m%}"
 }
 
-PROMPT='$(user_info)$(directory)$(git_info)
+PROMPT='$(user_info)$(directory)$(git_info) $(return_code)
 > '
-RPROMPT='$(return_code)'

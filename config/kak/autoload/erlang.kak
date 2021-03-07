@@ -51,6 +51,7 @@ evaluate-commands %sh{
         add-highlighter shared/erlang/code/ regex (${operators}) 0:operator
     "
 }
+
 # Commands
 # --------
 
