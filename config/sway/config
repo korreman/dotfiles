@@ -86,9 +86,9 @@ workspace_layout default
 focus_on_window_activation urgent
 
 # moving the mouse always causes the container underneath to focus
-focus_follows_mouse always
+focus_follows_mouse no
 # move mouse to newly focused container
-mouse_warping container
+mouse_warping output
 # wraps around local focus switches within a container. focus parent container to escape
 focus_wrapping force
 
