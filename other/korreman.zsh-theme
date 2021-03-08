@@ -1,9 +1,9 @@
 user_info() {
-    echo -n "%{\e[104m%} %n@%m %{\e[0m%}"
+    echo -n "%{\e[105m%} %n@%m %{\e[0m%}"
 }
 
 directory() {
-    echo -n "%{\e[105m%} %4~ %{\e[0m%}"
+    echo -n "%{\e[104m%} %4~ %{\e[0m%}"
 }
 
 git_info() {
@@ -14,7 +14,7 @@ git_info() {
         echo -n "%{\e[102m%}"
         if [ -n "$(parse_git_dirty)" ]; then
             # If dirty, change color to red
-            echo -n "%{\e[103m%}"
+            echo -n "%{\e[101m%}"
         fi
         # Finally print the name of the branch
         echo -n " $branch_name "
@@ -31,12 +31,8 @@ git_info() {
 }
 
 return_code() {
-    echo -n "%(?..%{\e[101m%} %? %{\e[0m%})"
+    echo -n "%(?..%{\e[97;41m%} %? %{\e[0m%})"
 }
 
-color_line() {
-    echo "%{\e[47m%}%E{%\e[0m%}"
-}
-
-PROMPT='$(user_info)$(directory)$(git_info) $(return_code)
+PROMPT='$(user_info)$(directory)$(git_info)$(return_code)
 > '
