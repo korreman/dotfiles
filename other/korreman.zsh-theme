@@ -3,7 +3,7 @@ user_info() {
 }
 
 directory() {
-    echo -n "%{\e[104m%} %4~ %{\e[0m%}"
+    echo -n "%{\e[104m%} %4d %{\e[0m%}"
 }
 
 git_info() {
