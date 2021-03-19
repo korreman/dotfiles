@@ -1,4 +1,4 @@
-set guioptions "vh"
+set guioptions ""
 set statusbar-home-tilde true
 set page-padding 16
 

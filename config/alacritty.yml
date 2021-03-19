@@ -184,12 +184,12 @@ colors:
   normal:
     black:   '0x000000'
     white:   '0xdedfe0'
-    red:     '0xc23821'
-    green:   '0x269e41'
+    red:     '0xa10008'
+    green:   '0x008c24'
     blue:    '0x5294e2'
-    yellow:  '0xd67618'
-    cyan:    '0x25b3b8'
-    magenta: '0xd511b0'
+    yellow:  '0xc26f00'
+    cyan:    '0x1c888c'
+    magenta: '0xa50eab'
 
   bright:
     black:   '0xa0a0a0'
@@ -200,6 +200,9 @@ colors:
     yellow:  '0xffe5a6'
     cyan:    '0xb5f1f7'
     magenta: '0xf5c4ea'
+
+  dim:
+    blue:    '0x467fc2'
 
     # The dimmed foreground color is calculated automatically if it is not
     # present. If the bright foreground color is not set, or
