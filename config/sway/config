@@ -1,7 +1,7 @@
 input * {
     xkb_layout "us"
     xkb_variant "altgr-intl"
-    xkb_options "caps:escape_shifted_capslock"
+    xkb_options "caps:swapescape"
     repeat_delay 200
     repeat_rate 30
     xkb_numlock enable
@@ -13,7 +13,7 @@ input type:touchpad {
     tap_button_map lmr
 }
 
-output eDP-1 scale 1.5
+output eDP-1 scale 1
 
 # GTK theming
 set $gnome-schema org.gnome.desktop.interface
@@ -43,7 +43,7 @@ bar {
     status_command i3status
     separator_symbol " | "
 
-    font pango: Dejavu Sans Mono, Font Awesome 5 Free 10
+    font pango: Dejavu Sans Mono, Font Awesome 5 Free 15
     icon_theme "Arc"
 
     colors {
@@ -59,7 +59,7 @@ bar {
     }
 }
 
-font pango: Cantarell 11
+font pango: Cantarell 17
 
 # class                 title_border background text   placement window_border
 client.focused          $selected    $selected  $white $selected $selected
@@ -71,7 +71,7 @@ client.urgent           $border      $attention $text  $selected $border
 titlebar_border_thickness 1
 titlebar_padding 4 2
 title_align center
-default_border pixel 2
+default_border pixel 4
 hide_edge_borders --i3 smart_no_gaps
 
 output * bg "~/pictures/wallpapers/beacons.jpg" fill
