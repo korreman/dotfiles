@@ -1,6 +1,6 @@
 # A minimalist light theme, using built-in terminal colors
 
-# Uses terminal ANSI normal and bright colors, as well as various
+# Uses terminal ANSI normal, bright, and dim colors, as well as various attributes
 # Assumptions:
 # 1. The background is the exact same color as bright white
 # 2. Normal colors stand in contrast to bright white
@@ -9,24 +9,28 @@
 
 ### Code ###
 
-## Bolden keywords and operators
+# Bolden keywords and operators
 face global attribute default+bF
 face global keyword default+bF
-face global operator default+bF
 face global builtin default+bF
+face global operator default+bF
 
+# Reduce contrast for comments and documentation
 face global comment bright-black+F
-face global documentation bright-black+F
+face global documentation bright-black+iF
 
-face global value blue+udF
-face global string default,bright-yellow+F
-
-face global module yellow+F
+# High-level syntax
+face global meta magenta+F
+face global module green+F
 face global type red+F
 
+# Low level syntax
+face global function yellow+F
 face global variable green+F
-face global function magenta+F
-face global meta cyan+F
+
+face global value blue+udF
+face global string default,bright-green+F
+
 
 ### Markup ###
 face global title default+bu
@@ -36,6 +40,10 @@ face global block green,default
 face global link blue+u
 face global bullet default+b
 face global list default+b
+
+face global bold default+b
+face global italic default+i
+face global underline default+u
 
 face global conceal bright-white,default
 

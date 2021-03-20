@@ -99,3 +99,6 @@ alias "zip"="apack"
 
 # when compiling latex, just exit when failing
 alias "pdflatex"="pdflatex -halt-on-error"
+
+# auto hardware decoding for mpv
+alias "mpv"="mpv --hwdec=auto"

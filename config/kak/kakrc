@@ -12,8 +12,8 @@ hook global WinSetOption filetype=(rust) %{
 
 ##### KEYMAPS #####
 
-# Not mapped: Y D # ^ = + <del> <backspace> <ins> <ret>
-# Not utilized: { } < >
+# Not mapped: Y D # ^ + <del> <backspace> <ins> <ret>
+# Not utilized: < >
 
 map -docstring "repeat the last insert mode change" global normal "=" "."
 map -docstring "enter LSP mode" global normal "." ":enter-user-mode lsp<ret>"
@@ -65,7 +65,7 @@ map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
 map -docstring "remove trailing whitespace (bufferwide)" global user w 'Z%s +\n<ret>Hd z: nop<ret>'
 
 ##### COSMETICS #####
-colorscheme korreman
+colorscheme kindergarden
 
 ### practical cosmetics ###
 # prompt position, disable mouse input, remove clippy art
