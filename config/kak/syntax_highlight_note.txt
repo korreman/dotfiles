@@ -1,0 +1,26 @@
+Syntax highlighting faces are misused, and their vague definitions make more distinct highlighting styles look bad in many cases. Things like bolded text, colored background highlights, etc. Maybe the following would be better:
+
+Directive
+Macro
+
+Module
+Function
+Variable
+
+Type
+TypeConstructor
+Attribute
+
+Keyword
+Operator
+
+Literal
+StringLiteral
+TokenLiteral
+
+Comment
+Documentation
+
+Bold
+Italic
+Underline

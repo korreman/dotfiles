@@ -1,12 +1,12 @@
 default-timeout=5000
 ignore-timeout=1
-font=Cantarell 12
+font=Cantarell 16
 background-color=#353945f0
 text-color=#bac3cfff
 progress-color=over #f5f6f7ff
 border-size=0
 border-radius=7
-width=400
+width=600
 format=%s\n%b
 padding=10
 margin=10
