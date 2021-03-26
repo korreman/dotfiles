@@ -23,7 +23,9 @@ evaluate-commands %sh{
     green="rgb:228b22"
     olive="rgb:6b873c"
     orange="rgb:c46210"
+    yellow="rgb:ad9600"
     greyblue="rgb:6a7cf7"
+    teal="rgb:00a396"
 
     # Light background colors
     purple_bg="rgb:dfdeff" # periwinkle/lavender
@@ -43,13 +45,13 @@ evaluate-commands %sh{
     face global attribute ${black}+bf
     face global keyword ${black}+bf
     face global operator ${black}+bf
+    face global builtin ${black}+bf
 
     # Reduce contrast for comments and documentation
     face global comment ${grey1}
     face global documentation ${grey1}+i
 
     # High-level syntax
-    face global builtin ${olive}
     face global meta ${purple2}+f
     face global module ${purple}
     face global type ${blue}
@@ -58,7 +60,7 @@ evaluate-commands %sh{
     face global function ${red}
     face global variable ${green}
 
-    face global value ${orange}+u
+    face global value ${yellow}+u
     face global string ${orange}
 
 
@@ -78,14 +80,14 @@ evaluate-commands %sh{
     face global MatchingChar ${black},${grey2}+fg
     face global WrapMarker comment
 
-    face global LineNumbers ${black},${greyblue_bg}
+    face global LineNumbers ${blue},${greyblue_bg}
     face global LineNumbersWrapped ${greyblue_bg},${greyblue_bg}
     face global LineNumberCursor ${white},${greyblue}
     face global BufferPadding ${white},${white}
 
     face global MenuForeground ${white},${greyblue}
     face global MenuBackground ${black},${greyblue_bg}
-    face global MenuInfo ${blue}
+    face global MenuInfo ${blue},${greyblue_bg}
     face global Information ${black},${orange_bg}
     face global Error default,${pink_bg}
 
