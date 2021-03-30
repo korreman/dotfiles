@@ -111,21 +111,20 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Input Mono Condensed
-
+    family: Cascadia Code
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: SemiLight
 
   # Bold font face
-  bold:
+  #bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Input Mono Condensed
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Black
+    #style: Bold
 
   # Italic font face
   #italic:
@@ -150,7 +149,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 16.5
+  size: 15.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
