@@ -3,7 +3,7 @@ user_info() {
 }
 
 directory() {
-    echo -n "%{\e[104m%} %4d %{\e[0m%}"
+    echo -n "%{\e[104m%} %4~ %{\e[0m%}"
 }
 
 git_info() {
@@ -34,9 +34,5 @@ return_code() {
     echo -n "%(?..%{\e[97;41m%} %? %{\e[0m%})"
 }
 
-timestamp() {
-    echo -n "%{\e[105m%} %D{%H:%M:%S} %{\e[0m%}"
-}
-
-PROMPT='$(timestamp)$(directory)$(git_info)$(return_code)
+PROMPT='$(user_info)$(directory)$(git_info)$(return_code)
 > '

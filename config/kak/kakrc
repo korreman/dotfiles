@@ -53,13 +53,13 @@ map global insert <s-tab> "<a-;><a-lt>"
 
 # if a completion prompt is visible, tab will go to the next completion candidate
 hook global InsertCompletionShow .* %{
-    map window insert <tab> <c-n>;
+    map window insert <tab> <c-n>
     map window insert <s-tab> <c-p>
 }
 
 # once the hook disappears, revert the behavior of tabs
 hook global InsertCompletionHide .* %{
-    unmap window insert <tab> <c-n>;
+    unmap window insert <tab> <c-n>
     unmap window insert <s-tab> <c-p>
 }
 
@@ -91,10 +91,7 @@ add-highlighter global/ wrap -word -indent
 # show matching brackets
 add-highlighter global/ show-matching
 # show tabs, non-breaking spaces, etc
-add-highlighter global/ show-whitespaces -lf " " -spc " "
-# reduce the contrast on tabs
-# we use a separate regex for this because we want underlined spaces to display normally
-add-highlighter global/ regex "(	)" 0:comment
+add-highlighter global/ show-whitespaces -spc ' ' -lf ' ' #⌋⌟⌙
 # highlight comment keywords
 add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+ub
 # highlight trailing whitespace

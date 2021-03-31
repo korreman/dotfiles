@@ -66,7 +66,7 @@ evaluate-commands %sh{
 
     ### UI faces ###
     face global Default ${black},${white}
-    face global Whitespace ${black}
+    face global Whitespace ${grey1},${white}
     face global Prompt ${black}
 
     face global PrimaryCursor ${white},${blue}+fg
