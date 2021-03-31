@@ -32,7 +32,7 @@ set $dim_fg #7d8189
 set $dim_bg #d9dde0
 set $bright_fg #f5f6f8
 set $selected #5294e2
-set $border #b9bec7
+set $line #b9bec7
 set $attention #bef2cc
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -63,9 +63,9 @@ font pango: Cantarell 17
 
 # class                 title_border background text   placement window_border
 client.focused          $selected    $selected  $white $selected $selected
-client.focused_inactive $border      $bright_fg $text  $selected $border
-client.unfocused        $border      $dim_bg    $text  $selected $border
-client.urgent           $border      $attention $text  $selected $border
+client.focused_inactive $line        $bright_fg $text  $selected $line
+client.unfocused        $line        $dim_bg    $text  $selected $line
+client.urgent           $line        $attention $text  $selected $line
 
 # default layout
 titlebar_border_thickness 1

@@ -22,10 +22,19 @@ hook global WinSetOption filetype=(rust) %{
   }
 }
 
+##### SETTINGS #####
+# automatically reload files when they are modified
+set-option global autoreload yes
+set-option global indentwidth 4
+# keep a few lines visible above/below cursor when scrolling
+set-option global scrolloff 3,0
+
 ##### KEYMAPS #####
 
-# Not mapped: Y D # ^ + <del> <backspace> <ins> <ret>
-# Not utilized: < >
+# Not mapped: < > Y D # ^ + <del> <backspace> <ins> <ret>
+
+map global normal <gt> ""
+map global normal <lt> ""
 
 map -docstring "repeat the last insert mode change" global normal "=" "."
 map -docstring "enter LSP mode" global normal "." ":enter-user-mode lsp<ret>"
@@ -44,7 +53,6 @@ map -docstring "parenthesis block" global object p "("
 
 ### Tabs
 # tab indents both in normal mode and insert mode
-set-option global indentwidth 4
 map global normal <tab> "<gt>"
 map global normal <s-tab> "<lt>"
 # also indent whitespace lines in insert mode
@@ -84,8 +92,6 @@ colorscheme kalm
 set global ui_options ncurses_assistant=none ncurses_status_on_top=true ncurses_enable_mouse=false
 # line numbers
 add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " "
-# keep a few lines visible above/below cursor when scrolling
-set-option global scrolloff 3,0
 # wraps lines, preserving words
 add-highlighter global/ wrap -word -indent
 # show matching brackets
