@@ -31,14 +31,18 @@ set-option global scrolloff 3,0
 
 ##### KEYMAPS #####
 
-# Not mapped: < > Y D # ^ + <del> <backspace> <ins> <ret>
+# Not mapped: < > Y # ^ <del> <backspace> <ins> <ret> _
 
+# Unmap the keys that have been remapped.
 map global normal <gt> ""
 map global normal <lt> ""
+map global normal _ ""
 
-map -docstring "repeat the last insert mode change" global normal "=" "."
+### Miscellaneous
 map -docstring "enter LSP mode" global normal "." ":enter-user-mode lsp<ret>"
 map -docstring "unselect surrounding whitespace" global normal <minus> _
+map -docstring "repeat last insert mode change" global normal <plus> .
+map -docstring "split selections on line boundaries" global normal D <a-s>
 
 ### Regions
 map -docstring "select inner region" global normal '"' <a-i>
@@ -47,7 +51,7 @@ map -docstring "choose a register for the next operation" global normal = '"'
 
 # we don't need three keybinds for every object to select, so we remap some selections to first-layer symbols
 map -docstring "double quote string" global object q '"'
-map -docstring "brackets block" global object b B
+map -docstring "braces block" global object b B
 map -docstring "paragraph" global object g p
 map -docstring "parenthesis block" global object p "("
 

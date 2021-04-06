@@ -60,7 +60,7 @@ evaluate-commands %sh{
     face global function ${red}
     face global variable ${green}
 
-    face global value ${yellow}+u
+    face global value ${yellow}+ufg
     face global string ${orange}
 
 
