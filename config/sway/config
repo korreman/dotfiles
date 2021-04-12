@@ -52,8 +52,8 @@ bar {
         separator          $dim_fg
 
         focused_workspace  $selected  $selected  $white
-        active_workspace   $bright_fg $bright_fg $dim_fg
-        inactive_workspace $bar_bg    $bar_bg    $black
+        active_workspace   $bright_fg $bright_fg $black
+        inactive_workspace $bar_bg    $bar_bg    $dim_fg
         urgent_workspace   $attention $attention $dim_fg
         binding_mode       $attention $attention $dim_fg
     }
@@ -72,7 +72,7 @@ titlebar_border_thickness 1
 titlebar_padding 4 2
 title_align center
 default_border pixel 4
-hide_edge_borders --i3 smart_no_gaps
+hide_edge_borders smart
 
 output * bg "~/pictures/wallpapers/beacons.jpg" fill
 
