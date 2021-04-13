@@ -3,13 +3,13 @@
 evaluate-commands %sh{
     ### Color Definitions ###
 
-    # Use pure black and white for foreground and background, based on the theory that contrast can be reduced just as well using the monitor brightness controls.
-    black="rgb:000000"
-    white="rgb:ffffff"
+    black="rgb:383838"
+    white="rgb:f9fdff"
 
     # Greys
-    grey1="rgb:a2a1a0"
-    grey2="rgb:c2c1c0"
+    black_br="rgb:484848" #for bolded fonts
+    grey1="rgb:909192"
+    grey2="rgb:c0c1c2"
     grey3="rgb:ededed"
 
     # Dark foreground colors
@@ -42,10 +42,10 @@ evaluate-commands %sh{
 
     ### Syntax higlighting ###
     # Bolden keywords and operators
-    face global attribute $black+bf
-    face global keyword $black+bf
-    face global operator $black+bf
-    face global builtin $black+bf
+    face global attribute $black_br+bf
+    face global keyword $black_br+bf
+    face global operator $black_br+bf
+    face global builtin $black_br+bf
 
     # Reduce contrast for comments and documentation
     face global comment $grey1
