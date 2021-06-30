@@ -10,6 +10,7 @@
 # to the user's home directory starting with `~/`.
 import:
   - ~/.config/alacritty/local_config.yml
+  - ~/.config/alacritty/dracula.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -102,49 +103,49 @@ window:
   #multiplier: 3
 
 # Font configuration
-font:
+#font:
   # Normal (roman) font face
-  normal:
+  #normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Cascadia Code SemiLight
+    #family: Cascadia Mono PL
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
-  bold:
+  #bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Cascadia Code
+    #family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
-  italic:
+  #italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Cascadia Code SemiLight
+    #family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
   # Bold italic font face
-  bold_italic:
+  #bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Cascadia Code
+    #family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
@@ -176,33 +177,33 @@ font:
 draw_bold_text_with_bright_colors: false
 
 # Colors
-colors:
-  primary:
-    background: '0xffffff'
-    foreground: '0x000000'
+#colors:
+  #primary:
+    #background: '0xffffff'
+    #foreground: '0x000000'
 
-  normal:
-    black:   '0x000000'
-    white:   '0xdedfe0'
-    red:     '0xa50021'
-    green:   '0x228b22'
-    blue:    '0x286eb5'
-    yellow:  '0xc46210'
-    cyan:    '0x00a396'
-    magenta: '0x94038a'
+  #normal:
+    #black:   '0x000000'
+    #white:   '0xdedfe0'
+    #red:     '0xa50021'
+    #green:   '0x228b22'
+    #blue:    '0x286eb5'
+    #yellow:  '0xc46210'
+    #cyan:    '0x00a396'
+    #magenta: '0x94038a'
 
-  bright: # TODO: Use saturated, full colors for these?
-    black:   '0xa0a0a0'
-    white:   '0xffffff'
-    red:     '0xfcc7c7'
-    green:   '0x6b873c'
-    blue:    '0x6a7cf7'
-    yellow:  '0xad9600'
-    cyan:    '0xb5f1f7'
-    magenta: '0x7540b8'
+  #bright: # TODO: Use saturated, full colors for these?
+    #black:   '0xa0a0a0'
+    #white:   '0xffffff'
+    #red:     '0xfcc7c7'
+    #green:   '0x6b873c'
+    #blue:    '0x6a7cf7'
+    #yellow:  '0xad9600'
+    #cyan:    '0xb5f1f7'
+    #magenta: '0x7540b8'
 
-  dim:
-    blue:    '0x467fc2'
+  #dim:
+    #blue:    '0x467fc2'
 
     # The dimmed foreground color is calculated automatically if it is not
     # present. If the bright foreground color is not set, or
