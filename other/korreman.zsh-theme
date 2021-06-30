@@ -11,10 +11,10 @@ git_info() {
     branch_name="$(git_current_branch)"
     if [ -n "$branch_name" ]; then
         # Default color is green
-        echo -n "%{\e[30;102m%}"
+        echo -n "%{\e[30;42m%}"
         if [ -n "$(parse_git_dirty)" ]; then
             # If dirty, change color to red
-            echo -n "%{\e[30;106m%}"
+            echo -n "%{\e[30;46m%}"
         fi
         # Finally print the name of the branch
         echo -n " $branch_name "
