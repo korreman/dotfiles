@@ -156,7 +156,7 @@ map -docstring "split selections on line boundaries" global normal S <a-s>
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
 #set-option global lsp_diagnostic_line_warning_sign " "
-set-option global lsp_diagnostic_line_error_sign "→"
+set-option global lsp_diagnostic_line_error_sign "*"
 set-option global lsp_hover_anchor true
 set-option global lsp_insert_spaces true
 hook global WinSetOption filetype=(rust) %{

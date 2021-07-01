@@ -14,7 +14,7 @@ git_info() {
         echo -n "%{\e[30;42m%}"
         if [ -n "$(parse_git_dirty)" ]; then
             # If dirty, change color to red
-            echo -n "%{\e[30;46m%}"
+            echo -n "%{\e[30;41m%}"
         fi
         # Finally print the name of the branch
         echo -n " $branch_name "
