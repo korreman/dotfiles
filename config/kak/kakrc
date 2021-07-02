@@ -1,3 +1,26 @@
+##### LANGUAGE SERVER PROTOCOL #####
+# has to be placed before colorscheme for custom UI colors to work
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+
+set-option global lsp_hover_anchor true
+set-option global lsp_insert_spaces true
+hook global WinSetOption filetype=(rust) %{
+    lsp-enable-window
+
+    set-option global lsp_server_configuration rust.clippy_preference="on"
+}
+
+# enable semantic tokens
+hook global WinSetOption filetype=(rust) %{
+  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window semantic-tokens
+  }
+}
+
 ##### COSMETICS #####
 colorscheme dracula
 
@@ -155,30 +178,7 @@ map -docstring 'case insensitive split selections' global normal '<a-s>' S(?i)
 map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i)
 map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
 
-# Swap line splitting and regex splitting. Line splitting is ten times more useful.
+# Swap line splitting and regex splitting. Line splitting is ten times more common.
 map -docstring "split selections on line boundaries" global normal S <a-s>
 map -docstring "split selections with the given regex" global normal <a-s> S
 
-##### LANGUAGE SERVER PROTOCOL #####
-eval %sh{kak-lsp --kakoune -s $kak_session}
-
-#set-option global lsp_diagnostic_line_warning_sign " "
-#set-option global lsp_diagnostic_line_error_sign "*"
-set-option global lsp_hover_anchor true
-set-option global lsp_insert_spaces true
-hook global WinSetOption filetype=(rust) %{
-    lsp-enable-window
-    #lsp-diagnostic-lines-disable window
-
-    set-option global lsp_server_configuration rust.clippy_preference="on"
-}
-
-# enable semantic tokens
-hook global WinSetOption filetype=(rust) %{
-  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
-  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
-  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
-  hook -once -always window WinSetOption filetype=.* %{
-    remove-hooks window semantic-tokens
-  }
-}

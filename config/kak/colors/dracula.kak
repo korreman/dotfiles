@@ -47,9 +47,8 @@ set-face global bullet "%opt{green}"
 set-face global list "%opt{white}"
 
 # Language Server Protocol
-face global DiagnosticWarning "default,%opt{gray}"
+set-face global DiagnosticWarning "default,%opt{gray}"
 #face global Reference default,$grey3
-#face global DiagnosticError Error
 #face global LineFlagErrors $red
 #face global InlayHint comment
 #face global SnippetsNextPlaceholders $white,$purplish_blue
@@ -58,7 +57,7 @@ face global DiagnosticWarning "default,%opt{gray}"
 # Builtin faces
 set-face global Default "%opt{white},%opt{black}"
 set-face global Prompt "%opt{black},%opt{green}"
-set-face global BufferPadding "%opt{gray},%opt{black}"
+set-face global BufferPadding "%opt{black},%opt{black}"
 
 set-face global PrimarySelection "%opt{black},%opt{pink}+fg"
 set-face global PrimaryCursor "%opt{black},%opt{cyan}+fg"
