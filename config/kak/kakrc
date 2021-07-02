@@ -45,8 +45,6 @@ add-highlighter global/ regex \h+$ 0:Error
 set-option global autoreload yes
 # indent 4 chars at a time
 set-option global indentwidth 4
-# keep a few lines visible above/below cursor when scrolling
-set-option global scrolloff 3,0
 
 ##### COMMANDS #####
 # Use 'o' (open) to edit a file.
@@ -156,7 +154,7 @@ map -docstring "split selections on line boundaries" global normal S <a-s>
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
 #set-option global lsp_diagnostic_line_warning_sign " "
-set-option global lsp_diagnostic_line_error_sign "*"
+#set-option global lsp_diagnostic_line_error_sign "*"
 set-option global lsp_hover_anchor true
 set-option global lsp_insert_spaces true
 hook global WinSetOption filetype=(rust) %{
