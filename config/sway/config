@@ -1,7 +1,7 @@
 input * {
     xkb_layout "us"
     xkb_variant "altgr-intl"
-    xkb_options "caps:swapescape"
+    xkb_options "caps:swapescape,compose:lwin-altgr"
     repeat_delay 200
     repeat_rate 30
     xkb_numlock enable
@@ -74,7 +74,7 @@ title_align center
 default_border pixel 4
 hide_edge_borders smart
 
-output * bg "~/pictures/wallpapers/beacons.jpg" fill
+output * bg "~/pictures/wallpapers/summer_river.png" fill
 
 ##### STARTUP COMMANDS #####
 exec "sleep 5; bash ~/.config/sway/bg_gallery.sh" # script to change background periodically
@@ -95,6 +95,8 @@ focus_wrapping force
 ### High Level Binds ###
 set $mod Mod4
 set $term alacritty
+set $term_float alacritty -o window.class.instance=termfloat
+for_window [app_id="termfloat"] floating enable
 set $menu wofi --show=drun
 
 # reload the configuration file
@@ -104,19 +106,28 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg e
 
 # custom keybinds
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term_float
+
 bindsym Print exec grimshot copy area
+bindsym Ctrl+Print exec grimshot save area
+bindsym $mod+Print exec grimshot copy window
+bindsym $mod+Ctrl+Print exec grimshot save window
+bindsym Shift+Print exec grimshot copy screen
+bindsym Ctrl+Shift+Print exec grimshot save screen
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl set 5%+"
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl set 5%-"
 
-bindsym Ctrl+Mod1+Left  exec swaymsg -- output - transform 270
-bindsym Ctrl+Mod1+Right exec swaymsg -- output - transform  90
-bindsym Ctrl+Mod1+Up    exec swaymsg -- output - transform   0
-bindsym Ctrl+Mod1+Down  exec swaymsg -- output - transform 180
+bindsym $mod+F3 exec --no-startup-id amixer set Master 5%+
+bindsym $mod+F2 exec --no-startup-id amixer set Master 5%-
+bindsym $mod+F1 exec --no-startup-id amixer set Master toggle
+
+bindsym $mod+F6 exec --no-startup-id "brightnessctl set 5%+"
+bindsym $mod+F5 exec --no-startup-id "brightnessctl set 5%-"
+
+bindsym $mod+Left  exec swaymsg -- output - transform 270
+bindsym $mod+Right exec swaymsg -- output - transform  90
+bindsym $mod+Up    exec swaymsg -- output - transform   0
+bindsym $mod+Down  exec swaymsg -- output - transform 180
 
 bindsym $mod+n exec --no-startup-id "brightnessctl set 1"
 bindsym $mod+b exec --no-startup-id "brightnessctl set 100%"
@@ -142,23 +153,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
 
 # subdivides the container, alternating between vertically and horizontally
 bindsym $mod+s split toggle
@@ -243,12 +242,6 @@ mode "resize" {
         bindsym j resize shrink height 10 px or 8 ppt
         bindsym k resize grow   height 10 px or 8 ppt
         bindsym l resize grow   width  10 px or 8 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left  resize shrink width  10 px or 8 ppt
-        bindsym Down  resize grow   height 10 px or 8 ppt
-        bindsym Up    resize shrink height 10 px or 8 ppt
-        bindsym Right resize grow   width  10 px or 8 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
