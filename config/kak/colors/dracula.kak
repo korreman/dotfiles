@@ -46,6 +46,15 @@ set-face global link "%opt{green}"
 set-face global bullet "%opt{green}"
 set-face global list "%opt{white}"
 
+# Language Server Protocol
+face global DiagnosticWarning "default,%opt{gray}"
+#face global Reference default,$grey3
+#face global DiagnosticError Error
+#face global LineFlagErrors $red
+#face global InlayHint comment
+#face global SnippetsNextPlaceholders $white,$purplish_blue
+#face global SnippetsOtherPlaceholders $black,$greyblue_bg
+
 # Builtin faces
 set-face global Default "%opt{white},%opt{black}"
 set-face global Prompt "%opt{black},%opt{green}"
@@ -78,14 +87,3 @@ set-face global LineNumbersWrapped "%opt{gray},%opt{black}+i"
 set-face global MatchingChar "%opt{black},%opt{blue}"
 set-face global Whitespace "%opt{gray},%opt{black}+f"
 set-face global WrapMarker 'Whitespace'
-
-
-# Language Server Protocol
-face global DiagnosticWarning default,%opt{gray}
-#face global Reference default,$grey3
-#face global DiagnosticError Error
-#face global LineFlagErrors $red
-#face global InlayHint comment
-#face global SnippetsNextPlaceholders $white,$purplish_blue
-#face global SnippetsOtherPlaceholders $black,$greyblue_bg
-
