@@ -48,24 +48,28 @@ set-face global list "%opt{white}"
 
 # Builtin faces
 set-face global Default "%opt{white},%opt{black}"
+set-face global Prompt "%opt{black},%opt{green}"
+set-face global BufferPadding "%opt{gray},%opt{black}"
+
 set-face global PrimarySelection "%opt{black},%opt{pink}+fg"
-set-face global SecondarySelection "%opt{black},%opt{purple}+fg"
 set-face global PrimaryCursor "%opt{black},%opt{cyan}+fg"
-set-face global SecondaryCursor "%opt{black},%opt{orange}+fg"
 set-face global PrimaryCursorEol "%opt{black},%opt{cyan}+fg"
+
+set-face global SecondarySelection "%opt{black},%opt{purple}+fg"
+set-face global SecondaryCursor "%opt{black},%opt{orange}+fg"
 set-face global SecondaryCursorEol "%opt{black},%opt{orange}+fg"
+
 set-face global MenuForeground "%opt{blue},%opt{white}+b"
 set-face global MenuBackground "%opt{white},%opt{blue}"
 set-face global MenuInfo "%opt{cyan},%opt{blue}"
 set-face global Information "%opt{yellow},%opt{gray}"
 set-face global Error "%opt{black},%opt{red}"
+
 set-face global StatusLine "%opt{white},%opt{black}"
 set-face global StatusLineMode "%opt{black},%opt{green}"
 set-face global StatusLineInfo "%opt{purple},%opt{black}"
 set-face global StatusLineValue "%opt{orange},%opt{black}"
 set-face global StatusCursor "%opt{white},%opt{blue}"
-set-face global Prompt "%opt{black},%opt{green}"
-set-face global BufferPadding "%opt{gray},%opt{black}"
 
 # Builtin highlighter faces
 set-face global LineNumbers "%opt{gray},%opt{black}"
@@ -74,3 +78,14 @@ set-face global LineNumbersWrapped "%opt{gray},%opt{black}+i"
 set-face global MatchingChar "%opt{black},%opt{blue}"
 set-face global Whitespace "%opt{gray},%opt{black}+f"
 set-face global WrapMarker 'Whitespace'
+
+
+# Language Server Protocol
+face global DiagnosticWarning default,%opt{gray}
+#face global Reference default,$grey3
+#face global DiagnosticError Error
+#face global LineFlagErrors $red
+#face global InlayHint comment
+#face global SnippetsNextPlaceholders $white,$purplish_blue
+#face global SnippetsOtherPlaceholders $black,$greyblue_bg
+
