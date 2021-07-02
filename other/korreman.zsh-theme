@@ -1,9 +1,9 @@
 user_info() {
-    echo -n "%{\e[105m%} %n@%m %{\e[0m%}"
+    echo -n "%{\e[30;104m%} %n@%m %{\e[0m%}"
 }
 
 directory() {
-    echo -n "%{\e[104m%} %4~ %{\e[0m%}"
+    echo -n "%{\e[30;105m%} %4~ %{\e[0m%}"
 }
 
 git_info() {
@@ -11,10 +11,10 @@ git_info() {
     branch_name="$(git_current_branch)"
     if [ -n "$branch_name" ]; then
         # Default color is green
-        echo -n "%{\e[102m%}"
+        echo -n "%{\e[30;42m%}"
         if [ -n "$(parse_git_dirty)" ]; then
             # If dirty, change color to red
-            echo -n "%{\e[101m%}"
+            echo -n "%{\e[30;41m%}"
         fi
         # Finally print the name of the branch
         echo -n " $branch_name "
@@ -23,7 +23,7 @@ git_info() {
         commits_ahead="$(git_commits_ahead)"
         if [ -n "$commits_ahead" ]; then
             # If ahead, print number of commits
-            echo -n "%{\e[103m%} $commits_ahead "
+            echo -n "%{\e[0;93m%} $commits_ahead "
         fi
 
         echo -n "%{\e[0m%}"
@@ -31,7 +31,7 @@ git_info() {
 }
 
 return_code() {
-    echo -n "%(?..%{\e[97;41m%} %? %{\e[0m%})"
+    echo -n "%(?..%{\e[31m%} %? %{\e[0m%})"
 }
 
 PROMPT='$(user_info)$(directory)$(git_info)$(return_code)

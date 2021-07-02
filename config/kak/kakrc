@@ -1,26 +1,44 @@
-##### LANGUAGE SERVER PROTOCOL #####
-eval %sh{kak-lsp --kakoune -s $kak_session}
+##### COSMETICS #####
+colorscheme dracula
 
-#set-option global lsp_diagnostic_line_warning_sign " "
-set-option global lsp_diagnostic_line_error_sign "→"
-set-option global lsp_hover_anchor true
-set-option global lsp_insert_spaces true
-hook global WinSetOption filetype=(rust) %{
-    lsp-enable-window
-    lsp-diagnostic-lines-disable window
+### practical cosmetics ###
+# prompt positioned at top, remove clippy art
+set global ui_options ncurses_assistant=none ncurses_status_on_top=true ncurses_enable_mouse=false
 
-    set-option global lsp_server_configuration rust.clippy_preference="on"
+# Custom title, if that ever gets implemented
+#hook global WinDisplay .* %{ evaluate-commands %sh{
+#    buffer=$(basename "$kak_bufname" | cat)
+#    echo set-option -add buffer ui_options "'ncurses_set_title=$buffer'"
+#} }
+
+## custom modeline
+# TODO: additional useful info:
+# - git
+# - more than one open client?
+# - unsaved changes in an out-of-sight buffer?
+# Shell implementation idea: Create a routine that, given a list of colors and strings, draws the bar correctly. If a string is empty, don't draw the corresponding element. Compute each string and call the routine.
+set global modelinefmt '{MenuBackground} %sh{basename $kak_bufname} %val{cursor_char_column}:%val{cursor_line} %val{buf_line_count}≣ {{context_info}} {{mode_info}} [%opt{filetype}] %sh{dirname $kak_bufname} %val{session}' # 
+
+# line numbers
+add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " "
+# highlight charlimit columns
+hook global BufCreate .* %{
+    add-highlighter buffer/ column 101 default,rgb:36394a
 }
-
-# enable semantic tokens
-hook global WinSetOption filetype=(rust) %{
-  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
-  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
-  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
-  hook -once -always window WinSetOption filetype=.* %{
-    remove-hooks window semantic-tokens
-  }
+hook global BufSetOption filetype=(kak|markdown|gas) %{
+    remove-highlighter buffer/column_101_default,rgb:36394a
+    add-highlighter buffer/ column 81 default,rgb:36394a
 }
+# wraps lines, preserving words
+#add-highlighter global/ wrap -word -indent
+# show matching brackets
+add-highlighter global/ show-matching
+# show tabs, non-breaking spaces, etc
+add-highlighter global/ show-whitespaces -spc ' ' -lf ' '
+# highlight comment keywords
+add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+ub
+# highlight trailing whitespace
+add-highlighter global/ regex \h+$ 0:Error
 
 ##### SETTINGS #####
 # remove scratch buffer message on startup
@@ -30,13 +48,20 @@ hook global BufCreate "\*scratch\*" %{
 
 # automatically reload files when they are modified
 set-option global autoreload yes
+# indent 4 chars at a time
 set-option global indentwidth 4
 # keep a few lines visible above/below cursor when scrolling
 set-option global scrolloff 3,0
 
+##### COMMANDS #####
+# Use 'o' (open) to edit a file.
+# This is mainly to avoid mistyping a `w` and destroying the file you wanted to open.
+unalias global e edit
+alias global o edit
+
 ##### KEYMAPS #####
 
-# Not mapped: < > Y # ^ <del> <backspace> <ins> <ret> _
+# Not mapped: < > Y # ^ <del> <backspace> <ins> _ =
 
 # swap line selections
 map global normal x <a-x>
@@ -49,19 +74,24 @@ map global normal _ ''
 map global normal <a-{> ''
 map global normal <a-}> ''
 
+# Change the behavior of line selection
+# swap x with <a-x> so the default doesn't select the next line when standing on an empty line
+# 'X' is unchanged, so holding down shift will still extend a downward
+map global normal x <a-x>
+map global normal <a-x> x
+
 ### Miscellaneous
 map -docstring "enter LSP mode" global normal "." ": enter-user-mode lsp<ret>"
-map -docstring "unselect surrounding whitespace" global normal <minus> _
 map -docstring "repeat last insert mode change" global normal <plus> .
-map -docstring "choose a register for the next operation" global normal = '"'
+map -docstring "unselect surrounding whitespace" global normal <minus> _
 
 ### Object selection
 # TODO: Find the least-resistance way of doing object selections. Consider which selections are most common, etc.
 # <Shift> is changed to mean "inner object". <Alt> is banished.
 # I generally want to extend my current object selection rather than jump to the next object.
 # The exception to the rule is when navigating through paragraphs, but I can just press semicolon to deselect when necessary.
-map -docstring "select inner object" global normal '"' <a-i>
-map -docstring "select whole object" global normal "'" <a-a>
+map -docstring "select inner object" global normal "'" <a-i>
+map -docstring "select whole object" global normal '<ret>' <a-a>
 map -docstring "extend selections to whole object start" global normal [ {
 map -docstring "extend selections to whole object end" global normal ] }
 map -docstring "extend selections to inner object start" global normal { <a-{>
@@ -105,48 +135,52 @@ hook global InsertCompletionHide .* %{
     unmap window insert <s-tab> <c-p>
 }
 
+### User mappings
+map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
+map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
+map -docstring "remove trailing whitespace (bufferwide)" global user w '"dZ%s +$<ret>d "dz: nop<ret>'
+
+# spellcheck
+map -docstring "highlight spelling errors" global user c ': spell<ret>'
+map -docstring "clear spelling highlights" global user x ': spell-clear<ret>'
+map -docstring "spelling replacement suggestions" global user r ': spell-replace<ret>'
+map -docstring "jump to next spelling error" global user n ': spell-next<ret>'
+
+# remap all regex commands to be case-insensitive by default
+# inserts a small prefix that can be cancelled with <c-u>
+map -docstring 'case insensitive search' global normal '/' /(?i)
+map -docstring 'case insensitive backward search' global normal '<a-/>' <a-/>(?i)
+map -docstring 'case insensitive extend search' global normal '?' ?(?i)
+map -docstring 'case insensitive backward extend-search' global normal '<a-?>' <a-?>(?i)
+map -docstring 'case insensitive select' global normal 's' s(?i)
+map -docstring 'case insensitive split selections' global normal '<a-s>' S(?i)
+map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i)
+map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
+
 # Swap line splitting and regex splitting. Line splitting is ten times more useful.
 map -docstring "split selections on line boundaries" global normal S <a-s>
 map -docstring "split selections with the given regex" global normal <a-s> S
 
-### User mappings
-# yanking and putting to clipboard
-map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
-map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
+##### LANGUAGE SERVER PROTOCOL #####
+eval %sh{kak-lsp --kakoune -s $kak_session}
 
-# remove trailing whitespace
-map -docstring "remove trailing whitespace (bufferwide)" global user w 'Z%s +\n<ret>Hd z: nop<ret>'
+#set-option global lsp_diagnostic_line_warning_sign " "
+set-option global lsp_diagnostic_line_error_sign "*"
+set-option global lsp_hover_anchor true
+set-option global lsp_insert_spaces true
+hook global WinSetOption filetype=(rust) %{
+    lsp-enable-window
+    #lsp-diagnostic-lines-disable window
 
-##### COSMETICS #####
-colorscheme kalm
+    set-option global lsp_server_configuration rust.clippy_preference="on"
+}
 
-### practical cosmetics ###
-# prompt positioned at top, disable mouse input, remove clippy art
-set global ui_options ncurses_assistant=none ncurses_status_on_top=true ncurses_enable_mouse=false
-
-# Custom title, if that ever gets implemented
-#hook global WinDisplay .* %{ evaluate-commands %sh{
-#    buffer=$(basename "$kak_bufname" | cat)
-#    echo set-option -add buffer ui_options "'ncurses_set_title=$buffer'"
-#} }
-
-## custom modeline
-# TODO: additional useful info:
-# - git
-# - more than one open client?
-# - unsaved changes in an out-of-sight buffer?
-# Shell implementation idea: Create a routine that, given a list of colors and strings, draws the bar correctly. If a string is omitted, don't draw the corresponding element. Compute each string and call the routine.
-set global modelinefmt '{MenuBackground} %sh{basename $kak_bufname} %val{cursor_char_column}:%val{cursor_line} %val{buf_line_count}≣ {{context_info}} {{mode_info}} [%opt{filetype}] %sh{dirname $kak_bufname} %val{session}' # 
-
-# line numbers
-add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " "
-# wraps lines, preserving words
-#add-highlighter global/ wrap -word -indent
-# show matching brackets
-add-highlighter global/ show-matching
-# show tabs, non-breaking spaces, etc
-add-highlighter global/ show-whitespaces -spc ' ' -lf ' '
-# highlight comment keywords
-add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+ub
-# highlight trailing whitespace
-add-highlighter global/ regex \h+$ 0:Error
+# enable semantic tokens
+hook global WinSetOption filetype=(rust) %{
+  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window semantic-tokens
+  }
+}
