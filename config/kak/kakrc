@@ -41,6 +41,11 @@ add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+ub
 add-highlighter global/ regex \h+$ 0:Error
 
 ##### SETTINGS #####
+# remove scratch buffer message on startup
+hook global BufCreate "\*scratch\*" %{
+    execute-keys XXd
+}
+
 # automatically reload files when they are modified
 set-option global autoreload yes
 # indent 4 chars at a time
@@ -55,6 +60,10 @@ alias global o edit
 ##### KEYMAPS #####
 
 # Not mapped: < > Y # ^ <del> <backspace> <ins> _ =
+
+# swap line selections
+map global normal x <a-x>
+map global normal <a-x> x
 
 # Unmap the keys that have been remapped.
 map global normal <gt> ''
@@ -91,7 +100,7 @@ map -docstring "braces block" global object b B
 map -docstring "paragraph" global object g p
 map -docstring "parenthesis block" global object p "("
 
-# Remove unneeded synonyms for various objects. I wish these could be properly erased.
+# soft unmap a bunch of objects that we don't use. wish they could be properly unmapped
 map global object ( ''
 map global object ) ''
 map global object { ''
@@ -102,6 +111,7 @@ map global object <lt> ''
 map global object <gt> ''
 map global object Q ''
 map global object q ''
+map global object B ''
 
 ### Tabs
 # tab indents both in normal mode and insert mode
@@ -145,10 +155,9 @@ map -docstring 'case insensitive split selections' global normal '<a-s>' S(?i)
 map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i)
 map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
 
-# swap the keys for line splitting and regex splitting
-# line splitting is ten times more useful
+# Swap line splitting and regex splitting. Line splitting is ten times more useful.
 map -docstring "split selections on line boundaries" global normal S <a-s>
-
+map -docstring "split selections with the given regex" global normal <a-s> S
 
 ##### LANGUAGE SERVER PROTOCOL #####
 eval %sh{kak-lsp --kakoune -s $kak_session}
