@@ -52,7 +52,7 @@ n ()
     # stty lwrap undef
     # stty lnext undef
 
-    nnn "$@"
+    nnn -oe "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
@@ -65,6 +65,7 @@ export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 # Export variables
 export ARCHFLAGS="-arch x86_64"
 export EDITOR='kak'
+export VISUAL='kak'
 PATH=$PATH:~/.local/bin
 
 # prefix space for incognito
@@ -75,6 +76,14 @@ LS_COLORS='rs=0:di=01:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=4
 export LS_COLORS
 
 ## User aliases ##
+function k() {
+    if [ ${#} = '0' ]; then
+        kak $(mktemp);
+    else
+        kak $*;
+    fi
+}
+
 # Using local programming language environments
 alias "ghci"="stack ghci"
 alias "ghc"="stack ghc -- -W"
