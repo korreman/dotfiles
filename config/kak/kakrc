@@ -23,6 +23,11 @@ hook global WinSetOption filetype=(rust) %{
 }
 
 ##### SETTINGS #####
+# remove scratch buffer message on startup
+hook global BufCreate "\*scratch\*" %{
+    execute-keys XXd
+}
+
 # automatically reload files when they are modified
 set-option global autoreload yes
 set-option global indentwidth 4
@@ -32,6 +37,10 @@ set-option global scrolloff 3,0
 ##### KEYMAPS #####
 
 # Not mapped: < > Y # ^ <del> <backspace> <ins> <ret> _
+
+# swap line selections
+map global normal x <a-x>
+map global normal <a-x> x
 
 # Unmap the keys that have been remapped.
 map global normal <gt> ''
@@ -63,6 +72,7 @@ map -docstring "braces block" global object b B
 map -docstring "paragraph" global object g p
 map -docstring "parenthesis block" global object p "("
 
+# soft unmap a bunch of objects that we don't use. wish they could be properly unmapped
 map global object ( ''
 map global object ) ''
 map global object { ''
@@ -73,6 +83,7 @@ map global object <lt> ''
 map global object <gt> ''
 map global object Q ''
 map global object q ''
+map global object B ''
 
 ### Tabs
 # tab indents both in normal mode and insert mode
@@ -93,12 +104,6 @@ hook global InsertCompletionHide .* %{
     unmap window insert <tab> <c-n>
     unmap window insert <s-tab> <c-p>
 }
-
-# Change the behavior of line selection
-# swap x with <a-x> so the default doesn't select the next line when standing on an empty line
-# 'X' is unchanged, so holding down will still extend a downward
-map global normal x <a-x>
-map global normal <a-x> x
 
 # Swap line splitting and regex splitting. Line splitting is ten times more useful.
 map -docstring "split selections on line boundaries" global normal S <a-s>
@@ -136,7 +141,7 @@ set global modelinefmt '{MenuBackground} %sh{basename $kak_bufname} %val{cursor_
 # line numbers
 add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " "
 # wraps lines, preserving words
-add-highlighter global/ wrap -word -indent
+#add-highlighter global/ wrap -word -indent
 # show matching brackets
 add-highlighter global/ show-matching
 # show tabs, non-breaking spaces, etc
