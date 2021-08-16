@@ -13,16 +13,22 @@ input type:touchpad {
     tap_button_map lmr
 }
 
-output eDP-1 scale 1
+input type:tablet_tool map_from_region 0.0x0.05 1.0x0.95
+
+output * adaptive_sync on
+output * max_render_time 4
 
 # GTK theming
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Arc'
-    gsettings set $gnome-schema icon-theme 'Arc'
-    gsettings set $gnome-schema cursor-theme 'Arc'
+    gsettings set $gnome-schema gtk-theme 'Dracula'
+    gsettings set $gnome-schema icon-theme 'Dracula'
+    gsettings set $gnome-schema cursor-theme 'Qogir-white-cursors'
+    gsettings set $gnome-schema cursor-size '40'
     gsettings set $gnome-schema font-name 'Cantarell 11'
 }
+
+seat * xcursor_theme Qogir-white-cursors 40
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -62,14 +68,15 @@ client.background       #F8F8F2
 # default layout
 titlebar_border_thickness 1
 titlebar_padding 4 2
-title_align center
+title_align left
 default_border pixel 4
 hide_edge_borders smart
 
-output * bg "~/pictures/wallpapers/DragonsKeep1440p.png" fill
+for_window [title=.] title_format "<b>▌</b>%title"
+
+output * bg "~/pictures/wallpapers/current_wallpaper.link" fill
 
 ##### STARTUP COMMANDS #####
-exec "sleep 5; bash ~/.config/sway/bg_gallery.sh" # script to change background periodically
 exec "mako" # notifications
 
 ##### KEYBINDS #####
