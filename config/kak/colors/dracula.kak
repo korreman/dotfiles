@@ -84,7 +84,7 @@ set-face global StatusCursor "%opt{white},%opt{blue}"
 # Builtin highlighter faces
 set-face global LineNumbers "%opt{gray},%opt{black}"
 set-face global LineNumberCursor "%opt{white},%opt{gray}+b"
-set-face global LineNumbersWrapped "%opt{gray},%opt{black}+i"
+set-face global LineNumbersWrapped "%opt{black},%opt{black}"
 set-face global MatchingChar "%opt{white},%opt{blue}"
 set-face global Whitespace "%opt{gray},%opt{black}+f"
 set-face global WrapMarker 'Whitespace'
