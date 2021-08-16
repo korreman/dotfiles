@@ -16,8 +16,6 @@ input type:touchpad {
 input type:tablet_tool map_from_region 0.0x0.05 1.0x0.95
 
 output * scale 1
-#output * adaptive_sync on
-#output * max_render_time 4
 
 # GTK theming
 set $gnome-schema org.gnome.desktop.interface
