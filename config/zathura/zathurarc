@@ -1,5 +1,6 @@
 set window-title-basename "true"
 set selection-clipboard "clipboard"
+set guioptions ""
 
 # Dracula color theme for Zathura
 # Swaps Foreground for Background to get a light version if the user prefers
