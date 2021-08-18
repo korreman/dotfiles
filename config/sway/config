@@ -34,6 +34,7 @@ seat * xcursor_theme Qogir-white-cursors 40
 bar {
     mode hide
     position bottom
+    height 36
     status_command i3status
     separator_symbol "    "
 
@@ -41,13 +42,13 @@ bar {
     icon_theme "Dracula"
 
     colors {
-        background #282A36
+        background #44475A
         statusline #F8F8F2
         separator  #44475A
 
         focused_workspace  #6272A4 #6272A4 #F8F8F2
-        active_workspace   #282A36 #44475A #F8F8F2
-        inactive_workspace #282A36 #282A36 #BFBFBF
+        active_workspace   #282A36 #282A36 #F8F8F2
+        inactive_workspace #44475A #44475A #BFBFBF
         urgent_workspace   #FF5555 #FF5555 #F8F8F2
         binding_mode       #FF5555 #FF5555 #F8F8F2
     }
