@@ -32,8 +32,7 @@ seat * xcursor_theme Qogir-white-cursors 40
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    mode hide
-    position bottom
+    position top
     height 36
     status_command i3status
     separator_symbol "    "
@@ -42,13 +41,13 @@ bar {
     icon_theme "Dracula"
 
     colors {
-        background #44475A
+        background #282A36
         statusline #F8F8F2
-        separator  #44475A
+        separator  #282A36
 
         focused_workspace  #6272A4 #6272A4 #F8F8F2
-        active_workspace   #282A36 #282A36 #F8F8F2
-        inactive_workspace #44475A #44475A #BFBFBF
+        active_workspace   #44475A #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
         urgent_workspace   #FF5555 #FF5555 #F8F8F2
         binding_mode       #FF5555 #FF5555 #F8F8F2
     }
@@ -120,16 +119,16 @@ bindsym $mod+F3 exec --no-startup-id amixer set Master 5%+
 bindsym $mod+F2 exec --no-startup-id amixer set Master 5%-
 bindsym $mod+F1 exec --no-startup-id amixer set Master toggle
 
-bindsym $mod+F6 exec --no-startup-id "brightnessctl set 5%+"
-bindsym $mod+F5 exec --no-startup-id "brightnessctl set 5%-"
+bindsym $mod+F6 exec --no-startup-id "brightnessctl set 1%+"
+bindsym $mod+F5 exec --no-startup-id "brightnessctl set 1%-"
+bindsym $mod+n exec --no-startup-id "brightnessctl set 1"
+bindsym $mod+b exec --no-startup-id "brightnessctl set 100%"
 
 bindsym $mod+Left  exec swaymsg -- output - transform 270
 bindsym $mod+Right exec swaymsg -- output - transform  90
 bindsym $mod+Up    exec swaymsg -- output - transform   0
 bindsym $mod+Down  exec swaymsg -- output - transform 180
 
-bindsym $mod+n exec --no-startup-id "brightnessctl set 1"
-bindsym $mod+b exec --no-startup-id "brightnessctl set 100%"
 
 bindsym $mod+m exec --no-startup-id "swaylock || swaymsg exit"
 bindswitch lid:on exec swaylock
