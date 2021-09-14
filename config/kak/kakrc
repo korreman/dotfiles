@@ -26,14 +26,9 @@ hook global WinSetOption filetype=(rust) %{
 colorscheme dracula
 
 ### practical cosmetics ###
-# prompt positioned at top, remove clippy art
-set global ui_options ncurses_assistant=none ncurses_status_on_top=true ncurses_enable_mouse=false
-
-# Custom title, if that ever gets implemented
-#hook global WinDisplay .* %{ evaluate-commands %sh{
-#    buffer=$(basename "$kak_bufname" | cat)
-#    echo set-option -add buffer ui_options "'ncurses_set_title=$buffer'"
-#} }
+# prompt positioned at top, remove clippy art, no mouse
+set global ui_options terminal_assistant=none terminal_status_on_top=true terminal_enable_mouse=false
+set global startup_info_version 30000000 # don't fill screen with startup info
 
 ## custom modeline
 # TODO: additional useful info:
@@ -44,7 +39,7 @@ set global ui_options ncurses_assistant=none ncurses_status_on_top=true ncurses_
 set global modelinefmt '%sh{basename $kak_bufname} %val{cursor_char_column}:%val{cursor_line} %val{buf_line_count}≣ {{context_info}} {{mode_info}} [%opt{filetype}] %sh{dirname $kak_bufname} %val{session}' # 
 
 # line numbers
-add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " "
+add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator "┆"
 # highlight charlimit columns
 hook global BufCreate .* %{
     add-highlighter buffer/ column 101 default,rgb:44475a
@@ -77,7 +72,8 @@ set-option global indentwidth 4
 
 ##### COMMANDS #####
 # Use 'o' (open) to edit a file.
-# This is mainly to avoid mistyping a `w` and destroying the file you wanted to open.
+# This is changed to avoid mistyping a `w`
+# and destroying the file you wanted to open.
 unalias global e edit
 alias global o edit
 
@@ -85,57 +81,35 @@ alias global o edit
 
 # Not mapped: < > Y # ^ <del> <backspace> <ins> _ =
 
-# swap line selections
-map global normal x <a-x>
-map global normal <a-x> x
-
-# Unmap the keys that have been remapped.
-map global normal <gt> ''
-map global normal <lt> ''
-map global normal _ ''
-map global normal <a-{> ''
-map global normal <a-}> ''
-
 # Change the behavior of line selection
-# swap x with <a-x> so the default doesn't select the next line when standing on an empty line
-# 'X' is unchanged, so holding down shift will still extend a downward
+# x expands selections to contain full lines
+# <a-x> trim selections to only contain full lines
+# X expands to full lines, or extends selections to next lines if already full
+# <a-X> selects the current lines, or the next lines if already full
 map global normal x <a-x>
-map global normal <a-x> x
+map global normal <a-x> <a-X>
+map global normal <a-X> <a-x>
 
 ### Miscellaneous
-map -docstring "enter LSP mode" global normal "." ": enter-user-mode lsp<ret>"
-map -docstring "repeat last insert mode change" global normal <plus> .
+map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
 map -docstring "unselect surrounding whitespace" global normal <minus> _
 
 ### Object selection
-# TODO: Find the least-resistance way of doing object selections. Consider which selections are most common, etc.
-# <Shift> is changed to mean "inner object". <Alt> is banished.
-# I generally want to extend my current object selection rather than jump to the next object.
-# The exception to the rule is when navigating through paragraphs, but I can just press semicolon to deselect when necessary.
-map -docstring "select inner object" global normal "'" <a-i>
-map -docstring "select whole object" global normal '<ret>' <a-a>
-map -docstring "extend selections to whole object start" global normal [ {
-map -docstring "extend selections to whole object end" global normal ] }
-map -docstring "extend selections to inner object start" global normal { <a-{>
-map -docstring "extend selections to inner object end" global normal } <a-}>
+map -docstring "select inner surrounding object" global normal m <a-i>
+# Whole-object selection done by pressing `m` twice
+map -docstring "select surrounding object" global object m "<esc><a-a>"
 
-# we don't need three keybinds for every object to select, so we remap some selections to first-layer symbols
+# we don't need three keybinds for every object to select,
+# so we remap some selections to first-layer symbols
 map -docstring "braces block" global object b B
 map -docstring "paragraph" global object g p
 map -docstring "parenthesis block" global object p "("
+map -docstring "sentence" global object . s
+map -docstring "double quoted string" global object s Q
 
-# soft unmap a bunch of objects that we don't use. wish they could be properly unmapped
-map global object ( ''
-map global object ) ''
-map global object { ''
-map global object } ''
-map global object [ ''
-map global object ] ''
-map global object <lt> ''
-map global object <gt> ''
-map global object Q ''
-map global object q ''
-map global object B ''
+# swap repeat of selections with repeat of insertions
+map global normal . <a-.>
+map global normal <a-.> .
 
 ### Tabs
 # tab indents both in normal mode and insert mode
@@ -182,4 +156,3 @@ map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i
 # Swap line splitting and regex splitting. Line splitting is ten times more common.
 map -docstring "split selections on line boundaries" global normal S <a-s>
 map -docstring "split selections with the given regex" global normal <a-s> S
-
