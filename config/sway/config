@@ -3,7 +3,7 @@ include "local_config"
 input * {
     xkb_layout "us"
     xkb_variant "altgr-intl"
-    xkb_options "caps:swapescape,compose:lwin-altgr"
+    xkb_options "caps:swapescape,compose:lwin-altgr,parens:swap_brackets"
     repeat_delay 200
     repeat_rate 30
     xkb_numlock enable
@@ -25,11 +25,11 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Dracula'
     gsettings set $gnome-schema icon-theme 'Dracula'
     gsettings set $gnome-schema cursor-theme 'Qogir-white-cursors'
-    gsettings set $gnome-schema cursor-size '40'
+    gsettings set $gnome-schema cursor-size '36'
     gsettings set $gnome-schema font-name 'Cantarell 11'
 }
 
-seat * xcursor_theme Qogir-white-cursors 40
+seat * xcursor_theme Qogir-white-cursors 36
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -37,7 +37,7 @@ bar {
     position top
     height 36
     status_command i3status
-    separator_symbol "    "
+    separator_symbol "   "
 
     font pango: Dejavu Sans Mono, Font Awesome 5 Free 15
     icon_theme "Dracula"

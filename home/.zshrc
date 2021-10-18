@@ -113,3 +113,6 @@ alias "ls"="exa"
 
 # better file reader
 alias "cat"="bat"
+
+# make ripgrep case insensitive by default
+alias "rg"="rg -i"
