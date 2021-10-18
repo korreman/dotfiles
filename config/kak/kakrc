@@ -106,7 +106,7 @@ map -docstring "braces block" global object b B
 map -docstring "paragraph" global object g p
 map -docstring "parenthesis block" global object p "("
 map -docstring "sentence" global object . s
-map -docstring "double quoted string" global object s Q
+map -docstring "double quoted string" global object q Q
 
 # swap repeat of selections with repeat of insertions
 map global normal . <a-.>
