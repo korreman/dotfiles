@@ -38,9 +38,9 @@ evaluate-commands %sh{
     guard_functions="${guard_functions}|length|map_size"
     operators="=:=|=/=|/=|==|=<|<-|<|>=|->|=|>|\|\||\|"
 
-    printf %s\\n "hook global WinSetOption filetype=erlang %{
-        set-option window static_words '${keywords}:${types}:${values}:${guard_functions}'
-    }" | tr '|' ':'
+    #printf %s\\n "hook global WinSetOption filetype=erlang %{
+    #    set-option window static_words '${keywords}:${types}:${values}:${guard_functions}'
+    #}" | tr '|' ':'
 
     printf %s "
         add-highlighter shared/erlang/code/ regex \b[A-Z][A-Za-z0-9]*\b 0:variable

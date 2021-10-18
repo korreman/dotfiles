@@ -1,3 +1,5 @@
+include "local_config"
+
 input * {
     xkb_layout "us"
     xkb_variant "altgr-intl"
@@ -73,8 +75,6 @@ default_border pixel 4
 hide_edge_borders smart
 
 for_window [title=.] title_format "<b>▌</b>%title"
-
-output * bg "~/pictures/wallpapers/current_wallpaper.link" fill
 
 ##### STARTUP COMMANDS #####
 exec "mako" # notifications

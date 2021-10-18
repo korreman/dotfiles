@@ -107,3 +107,9 @@ alias "pdflatex"="pdflatex -halt-on-error"
 
 # auto hardware decoding for mpv
 alias "mpv"="mpv --hwdec=auto"
+
+# better directory lister
+alias "ls"="exa"
+
+# better file reader
+alias "cat"="bat"
