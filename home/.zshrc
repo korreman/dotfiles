@@ -107,3 +107,6 @@ alias "pdflatex"="pdflatex -halt-on-error"
 
 # auto hardware decoding for mpv
 alias "mpv"="mpv --hwdec=auto"
+
+# make ripgrep case insensitive by default
+alias "rg"="rg -i"

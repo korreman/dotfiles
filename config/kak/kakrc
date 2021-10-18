@@ -3,23 +3,20 @@
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
-set-option global lsp_hover_anchor true
-set-option global lsp_insert_spaces true
 hook global WinSetOption filetype=(rust) %{
     lsp-enable-window
     lsp-diagnostic-lines-disable window
 
-    set-option global lsp_server_configuration rust.clippy_preference="on"
-}
+    set-option global lsp_hover_anchor true
+    set-option global lsp_insert_spaces true
 
-# enable semantic tokens
-hook global WinSetOption filetype=(rust) %{
-  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
-  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
-  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
-  hook -once -always window WinSetOption filetype=.* %{
-    remove-hooks window semantic-tokens
-  }
+    # enable semantic tokens
+    #hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+    #hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+    #hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+    #hook -once -always window WinSetOption filetype=.* %{
+    #    remove-hooks window semantic-tokens
+    #}
 }
 
 ##### COSMETICS #####
@@ -88,11 +85,15 @@ alias global o edit
 # <a-X> selects the current lines, or the next lines if already full
 map global normal x <a-x>
 map global normal <a-x> <a-X>
-map global normal <a-X> <a-x>
+map global normal <a-X> x
 
 ### Miscellaneous
 map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
 map -docstring "unselect surrounding whitespace" global normal <minus> _
+
+map -docstring "jump backward" global goto z "<esc><c-o>"
+map -docstring "jump forward" global goto x "<esc><c-i>"
+map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
 
 ### Object selection
 map -docstring "select inner surrounding object" global normal m <a-i>
