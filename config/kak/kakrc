@@ -103,8 +103,6 @@ map -docstring "select surrounding object" global object m "<esc><a-a>"
 # we don't need three keybinds for every object to select,
 # so we remap some selections to first-layer symbols
 map -docstring "braces block" global object b B
-map -docstring "paragraph" global object g p
-map -docstring "parenthesis block" global object p "("
 map -docstring "sentence" global object . s
 map -docstring "double quoted string" global object q Q
 
