@@ -89,7 +89,6 @@ map global normal <a-X> x
 
 ### Miscellaneous
 map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
-map -docstring "unselect surrounding whitespace" global normal <minus> _
 
 map -docstring "jump backward" global goto z "<esc><c-o>"
 map -docstring "jump forward" global goto x "<esc><c-i>"
