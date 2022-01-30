@@ -41,7 +41,7 @@ add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separato
 hook global BufCreate .* %{
     add-highlighter buffer/ column 101 default,rgb:44475a
 }
-hook global BufSetOption filetype=(kak|markdown|gas) %{
+hook global BufSetOption filetype=(kak|markdown|gas|python) %{
     remove-highlighter buffer/column_101_default,rgb:44475a
     add-highlighter buffer/ column 81 default,rgb:44475a
 }
@@ -76,7 +76,7 @@ alias global o edit
 
 ##### KEYMAPS #####
 
-# Not mapped: < > Y # ^ <del> <backspace> <ins> _ =
+# Not mapped: < > Y # ^ <del> <backspace> <ins> = ~ _
 
 # Change the behavior of line selection
 # x expands selections to contain full lines
@@ -93,6 +93,8 @@ map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
 map -docstring "jump backward" global goto z "<esc><c-o>"
 map -docstring "jump forward" global goto x "<esc><c-i>"
 map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
+
+map global normal <minus> _
 
 ### Object selection
 map -docstring "select inner surrounding object" global normal m <a-i>
