@@ -1,0 +1,7 @@
+# put in ~/.config/xkb/symbols/
+default partial alphanumeric_keys
+
+xkb_symbols "basic" {
+    include "us(altgr-intl)"
+    key <AE11> { [ underscore, minus ] };
+};

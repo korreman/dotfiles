@@ -1,9 +1,9 @@
 user_info() {
-    echo -n "%{\e[30;104m%} %n@%m %{\e[0m%}"
+    echo -n "%{\e[30;44m%} %n@%m %{\e[0m%}"
 }
 
 directory() {
-    echo -n "%{\e[30;105m%} %4~ %{\e[0m%}"
+    echo -n "%{\e[30;45m%} %4~ %{\e[0m%}"
 }
 
 git_info() {

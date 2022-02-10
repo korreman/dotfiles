@@ -76,7 +76,7 @@ alias global o edit
 
 ##### KEYMAPS #####
 
-# Not mapped: < > Y # ^ <del> <backspace> <ins> _ =
+# Not mapped: < > Y # ^ <del> <backspace> <ins> = ~ _
 
 # Change the behavior of line selection
 # x expands selections to contain full lines
@@ -89,11 +89,12 @@ map global normal <a-X> x
 
 ### Miscellaneous
 map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
-map -docstring "unselect surrounding whitespace" global normal <minus> _
 
 map -docstring "jump backward" global goto z "<esc><c-o>"
 map -docstring "jump forward" global goto x "<esc><c-i>"
 map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
+
+map global normal <minus> _
 
 ### Object selection
 map -docstring "select inner surrounding object" global normal m <a-i>
