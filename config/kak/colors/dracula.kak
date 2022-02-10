@@ -65,9 +65,9 @@ set-face global PrimarySelection "%opt{black},%opt{purple}+fg"
 set-face global PrimaryCursor "%opt{black},%opt{white}+fg"
 set-face global PrimaryCursorEol "%opt{black},%opt{white}+fg"
 
-set-face global SecondarySelection "%opt{black},%opt{orange}+fg"
-set-face global SecondaryCursor "%opt{black},%opt{pink}+fg"
-set-face global SecondaryCursorEol "%opt{black},%opt{pink}+fg"
+set-face global SecondarySelection "%opt{white},%opt{blue}+fg"
+set-face global SecondaryCursor "%opt{black},%opt{full_blue}+fg"
+set-face global SecondaryCursorEol "%opt{black},%opt{full_blue}+fg"
 
 set-face global MenuForeground "%opt{blue},%opt{white}+b"
 set-face global MenuBackground "%opt{white},%opt{blue}"
