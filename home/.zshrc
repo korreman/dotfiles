@@ -66,7 +66,7 @@ export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 export ARCHFLAGS="-arch x86_64"
 export EDITOR='kak'
 export VISUAL='kak'
-PATH=$PATH:~/.local/bin
+PATH=~/.local/bin:$PATH
 
 # prefix space for incognito
 setopt HIST_IGNORE_SPACE
@@ -106,7 +106,7 @@ alias "zip"="apack"
 alias "pdflatex"="pdflatex -halt-on-error"
 
 # auto hardware decoding for mpv
-alias "mpv"="mpv --hwdec=auto"
+alias "mpv"="mpv --scale=nearest"
 
 # better directory lister
 alias "ls"="exa"
@@ -116,3 +116,8 @@ alias "cat"="bat"
 
 # make ripgrep case insensitive by default
 alias "rg"="rg -i"
+
+# hide ffmpeg version information
+alias "ffmpeg"="ffmpeg -hide_banner"
+alias "ffprobe"="ffprobe -hide_banner"
+alias "ffplay"="ffplay -hide_banner"
