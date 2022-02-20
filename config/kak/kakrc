@@ -50,7 +50,7 @@ hook global BufSetOption filetype=(kak|markdown|gas|haskell|erlang) %{
 # show matching brackets
 add-highlighter global/ show-matching
 # show tabs, non-breaking spaces, etc
-add-highlighter global/ show-whitespaces -spc ' ' -lf ' '
+add-highlighter global/ show-whitespaces -spc ' ' -lf ' ' -tab '│'
 # highlight comment keywords
 add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+ub
 # highlight trailing whitespace
@@ -112,6 +112,8 @@ map global normal . <a-.>
 map global normal <a-.> .
 
 ### Tabs
+set global tabstop 4
+
 # tab indents both in normal mode and insert mode
 map global normal <tab> "<gt>"
 map global normal <s-tab> "<lt>"
