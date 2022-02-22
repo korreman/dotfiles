@@ -36,7 +36,7 @@ set global startup_info_version 30000000 # don't fill screen with startup info
 set global modelinefmt '%sh{basename $kak_bufname} %val{cursor_char_column}:%val{cursor_line} %val{buf_line_count}≣ {{context_info}} {{mode_info}} [%opt{filetype}] %sh{dirname $kak_bufname} %val{session}' # 
 
 # line numbers
-add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator "│"
+add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " │"
 # highlight charlimit columns
 hook global BufCreate .* %{
     add-highlighter buffer/ column 101 default,rgb:44475a
@@ -50,7 +50,7 @@ hook global BufSetOption filetype=(kak|markdown|gas|haskell|erlang) %{
 # show matching brackets
 add-highlighter global/ show-matching
 # show tabs, non-breaking spaces, etc
-add-highlighter global/ show-whitespaces -spc ' ' -lf ' ' -tab '│'
+add-highlighter global/ show-whitespaces -spc ' ' -lf ' '
 # highlight comment keywords
 add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+ub
 # highlight trailing whitespace

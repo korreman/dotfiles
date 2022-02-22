@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Usage: autobuild [pattern] timeout COMMAND [ARGS]
+# Example: autobuild "*.tex" 2 pdflatex master.tex
+# note that the quotation marks are necessary
+
+while [ true ]
+do
+    inotifywait --event modify $1 && timeout $2 "${@:3}"
+    echo "================================"
+done
