@@ -76,7 +76,7 @@ alias global o edit
 
 ##### KEYMAPS #####
 
-# Not mapped: < > Y # ^ <del> <backspace> <ins> = ~ _
+# Not mapped: < > Y # ^ <del> <backspace> <ins> ~ _ t
 
 # Change the behavior of line selection
 # x expands selections to contain full lines
@@ -87,31 +87,36 @@ map global normal x <a-x>
 map global normal <a-x> <a-X>
 map global normal <a-X> x
 
-### Miscellaneous
-map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
+# alternative word movement
+map global normal q b
+map global normal Q B
+map global normal <a-q> <a-b>
 
-map -docstring "jump backward" global goto z "<esc><c-o>"
-map -docstring "jump forward" global goto x "<esc><c-i>"
-map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
+# remap displaced macro
+map global normal = q
+map global normal <a-=> Q
+
+# to-char movement, uses f and b for forward and backward
+# inclusive
+map global normal f f
+map global normal b <a-f>
+# extend
+map global normal <s-f> <s-f>
+map global normal <s-b> <s-a-f>
+# exclusive
+map global normal <a-f> t
+map global normal <a-b> <a-t>
+# exclusive extend
+map global normal <s-a-f> <s-t>
+map global normal <s-a-b> <s-a-t>
 
 map global normal <minus> _
-
-### Object selection
-map -docstring "select inner surrounding object" global normal m <a-i>
-# Whole-object selection done by pressing `m` twice
-map -docstring "select surrounding object" global object m "<esc><a-a>"
-
-# we don't need three keybinds for every object to select,
-# so we remap some selections to first-layer symbols
-map -docstring "braces block" global object b B
-map -docstring "sentence" global object . s
-map -docstring "double quoted string" global object q Q
 
 # swap repeat of selections with repeat of insertions
 map global normal . <a-.>
 map global normal <a-.> .
 
-### Tabs
+# tabs
 set global tabstop 4
 
 # tab indents both in normal mode and insert mode
@@ -133,16 +138,9 @@ hook global InsertCompletionHide .* %{
     unmap window insert <s-tab> <c-p>
 }
 
-### User mappings
-map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
-map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
-map -docstring "remove trailing whitespace (bufferwide)" global user w '"dZ%s +$<ret>d "dz: nop<ret>'
-
-# spellcheck
-map -docstring "highlight spelling errors" global user c ': spell<ret>'
-map -docstring "clear spelling highlights" global user x ': spell-clear<ret>'
-map -docstring "spelling replacement suggestions" global user r ': spell-replace<ret>'
-map -docstring "jump to next spelling error" global user n ': spell-next<ret>'
+# Swap line splitting and regex splitting. Line splitting is ten times more common.
+map -docstring "split selections on line boundaries" global normal S <a-s>
+map -docstring "split selections with the given regex" global normal <a-s> S
 
 # remap all regex commands to be case-insensitive by default
 # inserts a small prefix that can be cancelled with <c-u>
@@ -155,6 +153,31 @@ map -docstring 'case insensitive split selections' global normal '<a-s>' S(?i)
 map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i)
 map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
 
-# Swap line splitting and regex splitting. Line splitting is ten times more common.
-map -docstring "split selections on line boundaries" global normal S <a-s>
-map -docstring "split selections with the given regex" global normal <a-s> S
+### Miscellaneous
+map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
+
+map -docstring "jump backward" global goto z "<esc><c-o>"
+map -docstring "jump forward" global goto x "<esc><c-i>"
+map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
+
+### Object selection
+map -docstring "select inner surrounding object" global normal m <a-i>
+# Whole-object selection done by pressing `m` twice
+map -docstring "select surrounding object" global object m "<esc><a-a>"
+
+# we don't need three keybinds for every object to select,
+# so we remap some selections to first-layer symbols
+map -docstring "braces block" global object b B
+map -docstring "sentence" global object . s
+map -docstring "double quoted string" global object q Q
+
+### User mappings
+map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
+map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
+map -docstring "remove trailing whitespace (bufferwide)" global user w '"dZ%s +$<ret>d "dz: nop<ret>'
+
+# spellcheck
+map -docstring "highlight spelling errors" global user c ': spell<ret>'
+map -docstring "clear spelling highlights" global user x ': spell-clear<ret>'
+map -docstring "spelling replacement suggestions" global user r ': spell-replace<ret>'
+map -docstring "jump to next spelling error" global user n ': spell-next<ret>'
