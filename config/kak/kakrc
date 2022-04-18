@@ -3,21 +3,7 @@
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
-hook global WinSetOption filetype=(rust) %{
-    lsp-enable-window
-    lsp-diagnostic-lines-disable window
 
-    set-option global lsp_hover_anchor true
-    set-option global lsp_insert_spaces true
-
-    # enable semantic tokens
-    #hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
-    #hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
-    #hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
-    #hook -once -always window WinSetOption filetype=.* %{
-    #    remove-hooks window semantic-tokens
-    #}
-}
 
 ##### COSMETICS #####
 colorscheme dracula
@@ -153,9 +139,15 @@ map -docstring 'case insensitive split selections' global normal '<a-s>' S(?i)
 map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i)
 map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
 
-### Miscellaneous
+##LSP
+map global user l ": lsp-enable-window; lsp-diagnostic-lines-disable window; set-option global lsp_hover_anchor true; set-option global lsp_insert_spaces true <ret>"
 map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
+# separate hover info from hover diagnostics
+map -docstring "show info for current position" global lsp h %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_info}"'; lsp-hover <ret>'}
+map -docstring "show info for current position" global lsp e %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_diagnostics}"'; lsp-hover <ret>'}
+map -docstring "show info for current position" global lsp E ': lsp-diagnostics<ret>'
 
+### Miscellaneous
 map -docstring "jump backward" global goto z "<esc><c-o>"
 map -docstring "jump forward" global goto x "<esc><c-i>"
 map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
