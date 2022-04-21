@@ -14,6 +14,7 @@ declare-option str orange 'rgb:ffb86c'
 declare-option str pink 'rgb:ff79c6'
 declare-option str purple 'rgb:bd93f9'
 declare-option str red 'rgb:ff5555'
+declare-option str red_bg 'rgb:5d222c'
 declare-option str yellow 'rgb:f1fa8c'
 
 declare-option str background %opt{black}
@@ -48,8 +49,8 @@ set-face global bullet "%opt{green}"
 set-face global list "%opt{white}"
 
 # Language Server Protocol
-set-face global DiagnosticWarning "default,%opt{gray}"
-set-face global DiagnosticError "%opt{black},%opt{red}+g"
+set-face global DiagnosticWarning "default,%opt{gray}+g"
+set-face global DiagnosticError "default,%opt{red_bg}+g"
 #face global Reference default,$grey3
 #face global LineFlagErrors $red
 #face global InlayHint comment
