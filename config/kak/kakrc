@@ -78,9 +78,6 @@ map global normal q b
 map global normal Q B
 map global normal <a-q> <a-b>
 
-# remap displaced macro
-map global normal = q
-map global normal <a-=> Q
 
 # to-char movement, uses f and b for forward and backward
 # inclusive
@@ -95,6 +92,15 @@ map global normal <a-b> <a-t>
 # exclusive extend
 map global normal <s-a-f> <s-t>
 map global normal <s-a-b> <s-a-t>
+
+# remap displaced macro
+map global normal ` q
+map global normal ~ Q
+
+# remap displaced upper/lowercase
+map global normal t `
+map global normal T ~
+map global normal <a-t> <a-`>
 
 map global normal <minus> _
 
