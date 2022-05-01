@@ -146,7 +146,7 @@ map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i
 map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
 
 ##LSP
-map global user l ": lsp-enable-window; lsp-diagnostic-lines-disable window; set-option global lsp_hover_anchor true; set-option global lsp_insert_spaces true <ret>"
+map -docstring "enable LSP" global user l ": lsp-enable-window; lsp-diagnostic-lines-disable window; set-option global lsp_hover_anchor true; set-option global lsp_insert_spaces true <ret>"
 map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
 # separate hover info from hover diagnostics
 map -docstring "show info for current position" global lsp h %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_info}"'; lsp-hover <ret>'}
