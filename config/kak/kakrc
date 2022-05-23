@@ -8,7 +8,7 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
     set global lsp_modeline_progress %sh{
         if ! "$6"; then
             #echo "$2${5:+" ($5%)"}${4:+": $4"}"
-            echo "⌛"
+            echo "⌛${5:+"$5%"}"
         fi
     }
 }
