@@ -121,3 +121,9 @@ alias "rg"="rg -i"
 alias "ffmpeg"="ffmpeg -hide_banner"
 alias "ffprobe"="ffprobe -hide_banner"
 alias "ffplay"="ffplay -hide_banner"
+
+# opam configuration
+[[ ! -r /home/korreman/.opam/opam-init/init.zsh ]] || source /home/korreman/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# broot shell function
+source /home/korreman/.config/broot/launcher/bash/br

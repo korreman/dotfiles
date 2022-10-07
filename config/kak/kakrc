@@ -8,7 +8,7 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
     set global lsp_modeline_progress %sh{
         if ! "$6"; then
             #echo "$2${5:+" ($5%)"}${4:+": $4"}"
-            echo "⌛${5:+"$5%"}"
+            echo " ${5:+"$5%"}"
         fi
     }
 }
@@ -27,18 +27,21 @@ set global startup_info_version 30000000 # don't fill screen with startup info
 # - more than one open client?
 # - unsaved changes in an out-of-sight buffer?
 # Shell implementation idea: Create a routine that, given a list of colors and strings, draws the bar correctly. If a string is empty, don't draw the corresponding element. Compute each string and call the routine.
-set global modelinefmt '%opt{lsp_modeline_progress} %sh{basename $kak_bufname} %val{cursor_char_column}:%val{cursor_line} %val{buf_line_count}≣ {{context_info}} {{mode_info}} [%opt{filetype}] %sh{dirname $kak_bufname} %val{session}' # 
+declare-option -hidden str ml_filename
+declare-option -hidden str ml_dirname
+hook global WinDisplay .* %{
+    set window ml_filename %sh{basename "$kak_bufname"}
+    set window ml_dirname %sh{dirname "$kak_bufname"}
+}
+
+# NOTE: Avoid putting anything other than vals and opts in the modeline.
+# It is re-computed *every time the cursor moves*, possibly for *every client*.
+set global modelinefmt '%opt{lsp_modeline_progress} %opt{ml_filename} %val{cursor_char_column}:%val{cursor_line} %val{buf_line_count}≣ {{context_info}} {{mode_info}} [%opt{filetype}] %opt{ml_dirname} %val{session}' # 
 
 # line numbers
-add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator " │"
-# highlight charlimit columns
-hook global BufCreate .* %{
-    add-highlighter buffer/ column 101 default,rgb:44475a
-}
-hook global BufSetOption filetype=(kak|markdown|gas|haskell|erlang) %{
-    remove-highlighter buffer/column_101_default,rgb:44475a
-    add-highlighter buffer/ column 81 default,rgb:44475a
-}
+add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator "│"
+# 100-char limit
+add-highlighter global/ column 101 default,rgb:44475a
 # wraps lines, preserving words
 #add-highlighter global/ wrap -word -indent
 # show matching brackets
@@ -85,7 +88,6 @@ map global normal <a-X> x
 map global normal q b
 map global normal Q B
 map global normal <a-q> <a-b>
-
 
 # to-char movement, uses f and b for forward and backward
 # inclusive

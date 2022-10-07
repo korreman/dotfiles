@@ -34,6 +34,8 @@ window:
     columns: 86
     lines: 32
 
+  pillars:
+    width: 100
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
