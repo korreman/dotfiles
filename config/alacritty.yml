@@ -35,7 +35,7 @@ window:
     lines: 32
 
   pillars:
-    width: 100
+    width: 106
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -857,7 +857,7 @@ key_bindings:
 
 #debug:
   # Display the time it takes to redraw each frame.
-  #render_timer: false
+  #render_timer: true
 
   # Keep the log file after quitting Alacritty.
   #persistent_logging: false

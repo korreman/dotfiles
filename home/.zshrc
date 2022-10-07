@@ -66,7 +66,7 @@ export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 export ARCHFLAGS="-arch x86_64"
 export EDITOR='kak'
 export VISUAL='kak'
-PATH=~/.local/bin:$PATH
+PATH=~/.opam/system/bin:~/.local/bin:$PATH
 
 # prefix space for incognito
 setopt HIST_IGNORE_SPACE
@@ -125,5 +125,5 @@ alias "ffplay"="ffplay -hide_banner"
 # opam configuration
 [[ ! -r /home/korreman/.opam/opam-init/init.zsh ]] || source /home/korreman/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-# broot shell function
-source /home/korreman/.config/broot/launcher/bash/br
+# rust compiler should use new version
+alias "rustc"="rustc --edition 2021"

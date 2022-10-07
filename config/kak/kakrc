@@ -27,6 +27,8 @@ set global startup_info_version 30000000 # don't fill screen with startup info
 # - more than one open client?
 # - unsaved changes in an out-of-sight buffer?
 # Shell implementation idea: Create a routine that, given a list of colors and strings, draws the bar correctly. If a string is empty, don't draw the corresponding element. Compute each string and call the routine.
+
+# Split file name into directory and actual file
 declare-option -hidden str ml_filename
 declare-option -hidden str ml_dirname
 hook global WinDisplay .* %{
@@ -40,8 +42,13 @@ set global modelinefmt '%opt{lsp_modeline_progress} %opt{ml_filename} %val{curso
 
 # line numbers
 add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator "│"
+
+# highlight current line
+add-highlighter global/ line '%val{cursor_line}' default,rgb:44475a
+
 # 100-char limit
 add-highlighter global/ column 101 default,rgb:44475a
+
 # wraps lines, preserving words
 #add-highlighter global/ wrap -word -indent
 # show matching brackets
@@ -169,9 +176,9 @@ map -docstring "jump forward" global goto x "<esc><c-i>"
 map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
 
 ### Object selection
-map -docstring "select inner surrounding object" global normal m <a-i>
-# Whole-object selection done by pressing `m` twice
-map -docstring "select surrounding object" global object m "<esc><a-a>"
+map -docstring "select surrounding object" global normal m <a-a>
+# Inner-object selection done by pressing `m` twice
+map -docstring "select inner surrounding object" global object m "<esc><a-i>"
 
 # we don't need three keybinds for every object to select,
 # so we remap some selections to first-layer symbols
