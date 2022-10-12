@@ -44,7 +44,7 @@ set global modelinefmt '%opt{lsp_modeline_progress} %opt{ml_filename} %val{curso
 add-highlighter -override global/ number-lines -hlcursor -min-digits 4 -separator "│"
 
 # highlight current line
-add-highlighter global/ line '%val{cursor_line}' default,rgb:44475a
+add-highlighter global/ line '%val{cursor_line}' default,rgb:181a26
 
 # 100-char limit
 add-highlighter global/ column 101 default,rgb:44475a
