@@ -36,6 +36,9 @@ window:
 
   pillars:
     width: 106
+    slack: 20
+    justify: center
+
   # Window position (changes require restart)
   #
   # Specified in number of pixels.

@@ -115,7 +115,7 @@ alias "ls"="exa"
 alias "cat"="bat"
 
 # make ripgrep case insensitive by default
-alias "rg"="rg -i"
+alias "rgu"="rg -S --color always"
 
 # hide ffmpeg version information
 alias "ffmpeg"="ffmpeg -hide_banner"
