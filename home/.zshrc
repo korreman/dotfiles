@@ -115,7 +115,7 @@ alias "ls"="exa"
 alias "cat"="bat"
 
 # make ripgrep case insensitive by default
-alias "rg"="rg -i"
+alias "rgu"="rg -S --color always"
 
 # hide ffmpeg version information
 alias "ffmpeg"="ffmpeg -hide_banner"
@@ -127,3 +127,5 @@ alias "ffplay"="ffplay -hide_banner"
 
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
+
+#eval "$(starship init zsh)"
