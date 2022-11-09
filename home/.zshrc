@@ -127,3 +127,5 @@ alias "ffplay"="ffplay -hide_banner"
 
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
+
+#eval "$(starship init zsh)"

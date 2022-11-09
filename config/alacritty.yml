@@ -31,13 +31,15 @@ window:
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
   dimensions:
-    columns: 86
+    columns: 106
     lines: 32
 
   pillars:
-    width: 106
-    slack: 20
-    justify: center
+    enable: true
+    width: 100
+    slack: 26
+    justify: left
+    separator_width: 2
 
   # Window position (changes require restart)
   #
@@ -748,6 +750,7 @@ key_bindings:
   - { key: N, mods: Shift|Control, action: SpawnNewInstance }
   - { key: PageUp, mods: Shift, action: ScrollPageUp}
   - { key: PageDown, mods: Shift, action: ScrollPageDown}
+  - { key: P, mods: Shift|Control, action: TogglePillars}
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }

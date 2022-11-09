@@ -18,6 +18,8 @@ colors:
     footer_bar:
       background: '0x282a36'
       foreground: '0xf8f8f2'
+  pillars:
+      separator: '0x44475a'
   line_indicator:
     foreground: None
     background: None
@@ -34,7 +36,7 @@ colors:
     cyan:    '0x8be9fd'
     white:   '0xbfbfbf'
   bright:
-    black:   '0x4d4d4d'
+    black:   '0x44475a'
     red:     '0xff6e67'
     green:   '0x5af78e'
     yellow:  '0xf4f99d'
