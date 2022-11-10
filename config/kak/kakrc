@@ -80,16 +80,8 @@ alias global o edit
 
 ##### KEYMAPS #####
 
-# Not mapped: < > Y # ^ <del> <backspace> <ins> ~ _ t
-
-# Change the behavior of line selection
-# x expands selections to contain full lines
-# <a-x> trim selections to only contain full lines
-# X expands to full lines, or extends selections to next lines if already full
-# <a-X> selects the current lines, or the next lines if already full
-map global normal x <a-x>
-map global normal <a-x> <a-X>
-map global normal <a-X> x
+map global normal <a-X> Kx
+map global normal X Jx
 
 # alternative word movement
 map global normal q b
@@ -173,7 +165,6 @@ map -docstring "show info for current position" global lsp E ': lsp-diagnostics<
 ### Miscellaneous
 map -docstring "jump backward" global goto z "<esc><c-o>"
 map -docstring "jump forward" global goto x "<esc><c-i>"
-map -docstring "save selection to jump list" global goto Z "<esc><c-s>"
 
 ### Object selection
 map -docstring "select surrounding object" global normal m <a-a>
