@@ -5,6 +5,11 @@
     border-radius: 0;
 }
 
+label:disabled,
+button:disabled {
+    color: inherit;
+}
+
 window#waybar {
     background-color: #282A36;
     color: #ffffff;
@@ -78,8 +83,8 @@ window#waybar.chromium {
     padding-top: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #44475a;
     color: #ffffff;
+    background-color: #44475a;
 }
 
 #window,
