@@ -59,8 +59,6 @@ window#waybar.chromium {
 }
 
 #mode {
-    background-color: #6272A4;
-    border-bottom: 3px solid #ffffff;
 }
 
 #clock,

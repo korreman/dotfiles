@@ -15,6 +15,7 @@
         "memory",
         "temperature",
         "battery",
+        "battery#bat1",
         "backlight",
     ],
 
@@ -28,7 +29,7 @@
         "format": " {free}"
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "{}"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -69,16 +70,27 @@
         "format": " {percent}",
     },
     "battery": {
+        "bat": "BAT0",
+        "design-capacity": true,
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{icon} {capacity:02}",
         "format-charging": " {capacity:02}",
         "format-plugged": " {capacity:02}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat1": {
+        "bat": "BAT1",
+        "design-capacity": true,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity:02}",
+        "format-charging": " {capacity:02}",
+        "format-plugged": " {capacity:02}",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
