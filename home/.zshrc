@@ -63,10 +63,7 @@ n ()
 export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
 # Export variables
-export ARCHFLAGS="-arch x86_64"
-export EDITOR='kak'
-export VISUAL='kak'
-PATH=~/.opam/system/bin:~/.local/bin:$PATH
+PATH=~/.local/bin:$PATH
 
 # prefix space for incognito
 setopt HIST_IGNORE_SPACE
@@ -128,4 +125,7 @@ alias "ffplay"="ffplay -hide_banner"
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
 
-#eval "$(starship init zsh)"
+# acquire environment variables through systemd
+set -a
+source <(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+set +a
