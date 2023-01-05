@@ -3,16 +3,20 @@ xkb_keymap {
     xkb_types     { include "complete"  };
     xkb_compat    { include "complete"  };
     xkb_symbols   {
-        include "pc"
         // US international layout with AltGr layer and no dead keys.
+        include "pc"
         include "us(altgr-intl)"
         include "inet(evdev)"
+
         // Swap Caps Lock with Escape (for kakoune/vim).
         include "capslock(swapescape)"
+
         // Combination to enter compose mode
         include "compose(lwin-altgr)"
+
         // Swap parentheses with square brackets.
         include "parens(swap_brackets)"
+
         // Use the < > key for underscores. TODO: Find a use for the shifted version.
         replace key <LSGT> {
             type= "FOUR_LEVEL",
