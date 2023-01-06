@@ -65,6 +65,11 @@ export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 # Export variables
 PATH=~/.local/bin:$PATH
 
+# acquire environment variables through systemd
+set -a
+source <(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+set +a
+
 # prefix space for incognito
 setopt HIST_IGNORE_SPACE
 
@@ -76,10 +81,6 @@ function k() {
         kak $*;
     fi
 }
-
-# Using local programming language environments
-alias "ghci"="stack ghci"
-alias "ghc"="stack ghc -- -W"
 
 # Mount aliases
 alias "mount"="udevil mount"
@@ -125,7 +126,4 @@ alias "ffplay"="ffplay -hide_banner"
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
 
-# acquire environment variables through systemd
-set -a
-source <(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
-set +a
+[ -f "/home/korreman/.ghcup/env" ] && source "/home/korreman/.ghcup/env" # ghcup-env
