@@ -36,7 +36,7 @@ window:
 
   pillars:
     enable: true
-    width: 100
+    width: 106
     slack: 26
     justify: left
     separator_width: 2

@@ -129,3 +129,5 @@ alias "ffplay"="ffplay -hide_banner"
 alias "rustc"="rustc --edition 2021"
 
 #eval "$(starship init zsh)"
+
+[ -f "/home/korreman/.ghcup/env" ] && source "/home/korreman/.ghcup/env" # ghcup-env
