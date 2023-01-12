@@ -17,8 +17,12 @@ xkb_keymap {
         // Swap parentheses with square brackets.
         include "parens(swap_brackets)"
 
-        // Use the < > key for underscores. TODO: Find a use for the shifted version.
-        replace key <LSGT> {
+
+        // Use the < > key as Left Shift, since it is closer to the other keys.
+        replace key <LSGT> { [ Shift_L ] };
+
+        // Use the Left Shift key for underscores. TODO: Find a use for the shifted version.
+        replace key <LFSH> {
             type= "FOUR_LEVEL",
             symbols[Group1]= [ underscore, minus, underscore, minus]
         };
