@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# Runs a command detached from the shell.
+# Specifically, stdout and stderr are redirected to /dev/null and the process is detached.
+
+${@:1} 1>/dev/null 2>/dev/null & disown
