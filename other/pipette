@@ -1,0 +1,15 @@
+#!/bin/bash
+# Programs used: echo, slurp, grim, tail, hexdump, printf, wl-copy
+
+# Select a pixel
+area="$(slurp -b 00000000 -p)"
+# Capture the pixel as an image
+capture="$(grim -g "$area" -t ppm -)"
+# Extract the pixel color as bytes
+pixel="$(echo -n "$capture" | tail -c 4 )"
+# Convert the bytes to hexadecimal
+hex="$(echo -n $pixel | hexdump -v -e '1/1 "%02x"')"
+# Prepend the hashtag
+color_code="$(printf "#$hex")"
+# Copy to clipboard
+wl-copy $color_code
