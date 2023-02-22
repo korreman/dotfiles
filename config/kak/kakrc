@@ -179,7 +179,7 @@ map -docstring "double quoted string" global object q Q
 
 ### User mappings
 map -docstring "yank to clipboard" global user y "<a-|>wl-copy<ret>"
-map -docstring "paste from clipboard" global user p "<a-!>wl-paste<ret>"
+map -docstring "paste from clipboard" global user p '"dZ<a-!>wl-paste --no-newline<ret>d"dz'
 map -docstring "remove trailing whitespace (bufferwide)" global user w '"dZ%s +$<ret>d"dz'
 
 # spellcheck
