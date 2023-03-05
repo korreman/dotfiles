@@ -89,18 +89,18 @@ map global normal Q B
 map global normal <a-q> <a-b>
 
 # to-char movement, uses f and b for forward and backward
-# inclusive
-map global normal f f
-map global normal b <a-f>
-# extend
-map global normal <s-f> <s-f>
-map global normal <s-b> <s-a-f>
 # exclusive
-map global normal <a-f> t
-map global normal <a-b> <a-t>
+map global normal f t
+map global normal b <a-t>
+# extend
+map global normal <s-f> <s-t>
+map global normal <s-b> <s-a-t>
+# inclusive
+map global normal <a-f> f
+map global normal <a-b> <a-f>
 # exclusive extend
-map global normal <s-a-f> <s-t>
-map global normal <s-a-b> <s-a-t>
+map global normal <s-a-f> <s-f>
+map global normal <s-a-b> <s-a-f>
 
 # remap displaced macro
 map global normal ` q
