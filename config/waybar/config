@@ -104,7 +104,6 @@
         "format-alt": "{ipaddr}  {bandwidthUpBytes:<}  {bandwidthDownBytes:<}",
         "format-icons": ["", "", "", ""],
         "tooltip": false,
-        "on-click": "nm-connection-editor",
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -121,7 +120,6 @@
             "car": "",
             "default": ["", "", "", ""]
         },
-        "on-click": "pavucontrol",
         "format-source": " {volume:02}",
         "format-source-muted": "",
     },
