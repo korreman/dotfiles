@@ -187,3 +187,6 @@ map -docstring "highlight spelling errors" global user c ': spell<ret>'
 map -docstring "clear spelling highlights" global user x ': spell-clear<ret>'
 map -docstring "spelling replacement suggestions" global user r ': spell-replace<ret>'
 map -docstring "jump to next spelling error" global user n ': spell-next<ret>'
+
+# open multiple files for editing
+define-command find-edit -params 1 %{evaluate-commands %sh{echo -n 'edit '; fd -j1 --type file $1 -X echo {} | sed 's/ /; new edit /g'}}

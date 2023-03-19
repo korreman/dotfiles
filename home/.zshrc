@@ -74,6 +74,7 @@ set +a
 setopt HIST_IGNORE_SPACE
 
 ## User aliases ##
+
 function k() {
     if [ ${#} = '0' ]; then
         kak $(mktemp);
@@ -81,6 +82,8 @@ function k() {
         kak $*;
     fi
 }
+
+alias "open"="xdg-open"
 
 # Mount aliases
 alias "mount"="udevil mount"
@@ -127,3 +130,5 @@ alias "ffplay"="ffplay -hide_banner"
 alias "rustc"="rustc --edition 2021"
 
 [ -f "/home/korreman/.ghcup/env" ] && source "/home/korreman/.ghcup/env" # ghcup-env
+
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
