@@ -55,3 +55,9 @@ set recolor-darkcolor           "#f8f8f2" # Foreground
 #
 set adjust-open width
 set recolor true
+
+#
+# Keybindings
+#
+
+map <Space> navigate next
