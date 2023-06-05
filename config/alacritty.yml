@@ -449,7 +449,7 @@ live_config_reload: true
 #alt_send_esc: true
 
 # Offer IPC using `alacritty msg` (unix only)
-#ipc_socket: true
+ipc_socket: true
 
 #mouse:
   # Click settings

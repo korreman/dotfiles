@@ -123,9 +123,6 @@ alias "ffmpeg"="ffmpeg -hide_banner"
 alias "ffprobe"="ffprobe -hide_banner"
 alias "ffplay"="ffplay -hide_banner"
 
-# opam configuration
-[[ ! -r /home/korreman/.opam/opam-init/init.zsh ]] || source /home/korreman/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
 
