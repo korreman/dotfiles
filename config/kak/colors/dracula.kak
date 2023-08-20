@@ -5,7 +5,7 @@
 # https://github.com/dracula/dracula-theme#color-palette
 declare-option str black 'rgb:282a36'
 declare-option str gray 'rgb:44475a'
-declare-option str gray1 'rgb:44475a'
+declare-option str gray1 'rgb:55586b'
 declare-option str white 'rgb:f8f8f2'
 declare-option str blue 'rgb:6272a4'
 declare-option str full_blue 'rgb:57a5ff'

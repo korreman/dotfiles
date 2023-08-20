@@ -103,9 +103,6 @@ alias "imv"="imv -u nearest_neighbour"
 alias "unzip"="aunpack"
 alias "zip"="apack"
 
-# when compiling latex, just exit when failing
-alias "pdflatex"="pdflatex -halt-on-error"
-
 # auto hardware decoding for mpv
 alias "mpv"="mpv --scale=nearest"
 

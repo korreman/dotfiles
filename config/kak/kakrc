@@ -80,6 +80,8 @@ set-option global indentwidth 4
 unalias global e edit
 alias global o edit
 
+alias global k kill
+
 ##### KEYMAPS #####
 
 map global normal <a-X> Kx
