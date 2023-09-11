@@ -16,7 +16,7 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
 ##### COSMETICS #####
 colorscheme dracula
 
-eval %sh{kak-tree-sitter --kakoune --daemonize}
+eval %sh{kak-tree-sitter -dks --session $kak_session}
 
 ### practical cosmetics ###
 # prompt positioned at top, remove clippy art, no mouse
