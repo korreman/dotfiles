@@ -123,6 +123,7 @@ alias "ffplay"="ffplay -hide_banner"
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
 
+# set pong AUR helper
 alias "pong"="pong --aur-helper yay"
 
 [ -f "/home/korreman/.ghcup/env" ] && source "/home/korreman/.ghcup/env" # ghcup-env

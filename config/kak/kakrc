@@ -4,6 +4,20 @@
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
 declare-option -hidden str lsp_modeline_progress ""
+define-command -hidden enable-lsp %{
+    lsp-enable-window
+    lsp-diagnostic-lines-disable window
+    set-option global lsp_hover_anchor true
+    set-option global lsp_insert_spaces true
+    map -docstring "enter LSP mode" global normal _ ": enter-user-mode lsp<ret>"
+}
+
+# require that LSP is consciously started
+# they are super heavy, so i don't want to accidentally fire them up
+map -docstring "enable LSP" global user l ": enable-lsp<ret>"
+declare-user-mode LSP_not_enabled
+map global normal "'" ": echo 'LSP not enabled'; enter-user-mode LSP_not_enabled<ret>"
+
 define-command -hidden -params 6 -override lsp-handle-progress %{
     set global lsp_modeline_progress %sh{
         if ! "$6"; then
@@ -158,9 +172,6 @@ map -docstring 'case insensitive split selections' global normal '<a-s>' S(?i)
 map -docstring 'case insensitive keep selections' global normal '<a-k>' <a-k>(?i)
 map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i)
 
-##LSP
-map -docstring "enable LSP" global user l ": lsp-enable-window; lsp-diagnostic-lines-disable window; set-option global lsp_hover_anchor true; set-option global lsp_insert_spaces true <ret>"
-map -docstring "enter LSP mode" global normal _ ": enter-user-mode lsp<ret>"
 # separate hover info from hover diagnostics
 map -docstring "show info for current position" global lsp h %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_info}"'; lsp-hover <ret>'}
 map -docstring "show info for current position" global lsp e %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_diagnostics}"'; lsp-hover <ret>'}
