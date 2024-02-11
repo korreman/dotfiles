@@ -123,6 +123,11 @@ alias "ffplay"="ffplay -hide_banner"
 # rust compiler should use new version
 alias "rustc"="rustc --edition 2021"
 
+alias "pong"="pong --aur-helper yay"
+
 [ -f "/home/korreman/.ghcup/env" ] && source "/home/korreman/.ghcup/env" # ghcup-env
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+
+source /home/korreman/.config/broot/launcher/bash/br
+source /home/korreman/.bash_functions

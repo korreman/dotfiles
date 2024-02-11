@@ -16,7 +16,7 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
 ##### COSMETICS #####
 colorscheme dracula
 
-eval %sh{kak-tree-sitter -dks --session $kak_session}
+eval %sh{kak-tree-sitter --kakoune --daemonize --server}
 
 ### practical cosmetics ###
 # prompt positioned at top, remove clippy art, no mouse
@@ -160,7 +160,7 @@ map -docstring 'case insensitive drop selections' global normal '<a-K>' <a-K>(?i
 
 ##LSP
 map -docstring "enable LSP" global user l ": lsp-enable-window; lsp-diagnostic-lines-disable window; set-option global lsp_hover_anchor true; set-option global lsp_insert_spaces true <ret>"
-map -docstring "enter LSP mode" global normal "'" ": enter-user-mode lsp<ret>"
+map -docstring "enter LSP mode" global normal _ ": enter-user-mode lsp<ret>"
 # separate hover info from hover diagnostics
 map -docstring "show info for current position" global lsp h %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_info}"'; lsp-hover <ret>'}
 map -docstring "show info for current position" global lsp e %{: set-option buffer lsp_show_hover_format 'printf %s "${lsp_diagnostics}"'; lsp-hover <ret>'}
@@ -173,7 +173,10 @@ map -docstring "jump forward" global goto x "<esc><c-i>"
 ### Object selection
 map -docstring "select surrounding object" global normal m <a-a>
 # Inner-object selection done by pressing `m` twice
-map -docstring "select inner surrounding object" global object m "<esc><a-i>"
+map -docstring "select inner surrounding object" global normal , "<a-i>"
+# Remap "'" to deselect
+map global normal "'" ,
+map global normal "<a-'>" <a-,>
 
 # we don't need three keybinds for every object to select,
 # so we remap some selections to first-layer symbols
