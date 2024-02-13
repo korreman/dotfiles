@@ -9,14 +9,14 @@ define-command -hidden enable-lsp %{
     lsp-diagnostic-lines-disable window
     set-option global lsp_hover_anchor true
     set-option global lsp_insert_spaces true
-    map -docstring "enter LSP mode" global normal _ ": enter-user-mode lsp<ret>"
+    map -docstring "enter LSP mode" global normal . ": enter-user-mode lsp<ret>"
 }
 
 # require that LSP is consciously started
 # they are super heavy, so i don't want to accidentally fire them up
 map -docstring "enable LSP" global user l ": enable-lsp<ret>"
 declare-user-mode LSP_not_enabled
-map global normal "'" ": echo 'LSP not enabled'; enter-user-mode LSP_not_enabled<ret>"
+map global normal . ": echo 'LSP not enabled'; enter-user-mode LSP_not_enabled<ret>"
 
 define-command -hidden -params 6 -override lsp-handle-progress %{
     set global lsp_modeline_progress %sh{
@@ -130,32 +130,22 @@ map global normal T ~
 map global normal <a-t> <a-`>
 
 map global normal <minus> _
+map global normal _ .
+map global normal <a-_> <a-.>
 
-# swap repeat of selections with repeat of insertions
-map global normal . <a-.>
-map global normal <a-.> .
+# indent and dedent
+map global normal <a-.> <gt>
+map global normal <a-,> <lt>
+# in insert mode, also indent empty lines
+map global insert <a-.> "<a-;><a-gt>"
+map global insert <a-,> "<a-;><a-lt>"
 
-# tabs
+# indentation level
 set global tabstop 4
 
-# tab indents both in normal mode and insert mode
-map global normal <tab> "<gt>"
-map global normal <s-tab> "<lt>"
-# also indent whitespace lines in insert mode
-map global insert <tab> "<a-;><a-gt>"
-map global insert <s-tab> "<a-;><a-lt>"
-
-# if a completion prompt is visible, tab will go to the next completion candidate
-hook global InsertCompletionShow .* %{
-    map window insert <tab> <c-n>
-    map window insert <s-tab> <c-p>
-}
-
-# once the hook disappears, revert the behavior of tabs
-hook global InsertCompletionHide .* %{
-    unmap window insert <tab> <c-n>
-    unmap window insert <s-tab> <c-p>
-}
+# pressing tab should autocomplete
+map global insert <tab> <c-n>
+map global insert <s-tab> <c-p>
 
 # Swap line splitting and regex splitting. Line splitting is ten times more common.
 map -docstring "split selections on line boundaries" global normal S <a-s>

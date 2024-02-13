@@ -130,5 +130,5 @@ alias "pong"="pong --aur-helper yay"
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
-source /home/korreman/.config/broot/launcher/bash/br
-source /home/korreman/.bash_functions
+#source /home/korreman/.config/broot/launcher/bash/br
+#source /home/korreman/.bash_functions
