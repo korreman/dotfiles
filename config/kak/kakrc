@@ -31,7 +31,7 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
 ##### COSMETICS #####
 colorscheme dracula
 
-eval %sh{kak-tree-sitter -dks --with-text-objects --session $kak_session}
+eval %sh{kak-tree-sitter -dks --session $kak_session}
 eval %sh{kak-recase --generate-config}
 map global user k ":recase<ret>"
 
