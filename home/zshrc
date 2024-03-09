@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/korreman/.oh-my-zsh"
 
@@ -73,7 +75,8 @@ set +a
 # prefix space for incognito
 setopt HIST_IGNORE_SPACE
 
-## User aliases ##
+## User aliases and functions##
+source ~/.shell_functions
 
 function k() {
     if [ ${#} = '0' ]; then
@@ -82,6 +85,13 @@ function k() {
         kak $*;
     fi
 }
+
+alias "kak"="kak-session"
+alias "gr"="goto-git-root"
+alias "fh"="fuzzy-history"
+alias "ff"="fuzzy-find"
+alias "fff"="fuzzy-find -t f"
+alias "ffd"="fuzzy-find -t d"
 
 alias "open"="xdg-open"
 
@@ -130,5 +140,4 @@ alias "pong"="pong --aur-helper yay"
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
-#source /home/korreman/.config/broot/launcher/bash/br
-#source /home/korreman/.bash_functions
+source /home/korreman/.config/broot/launcher/bash/br

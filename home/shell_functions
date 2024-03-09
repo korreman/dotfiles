@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# A collection of useful commands
+
+# open kak in a shared project setting
+function kak-session () {
+    # 1. Look for a .kak_session in a parent directory.
+    session_file=$(find-in-ancestors .kak_session ${!#})
+    if [ $? != 0 ]; then
+        \kak ${@:1};
+    else
+        # 2. Read the session name from that file.
+        session_name=$(<"$session_file")
+        # 3. Check whether session exists
+        if $(\kak -l | rg -q "^$session_name\$"); then
+            # 4.b Else, create it
+            \kak -c $session_name ${@:1};
+        else
+            # 4.a If so, join
+            \kak -s $session_name ${@:1};
+        fi
+    fi
+}
+
+# go to the root of a git repository
+function goto-git-root () {
+    cd $(git-root)
+}
+
+# go to the root of a git repository or submodule
+function goto-git-root-submodule () {
+    cd $(git-root-submodule)
+}
+
+# fuzzy find and open file/dir in current directory
+# will either cd to the directory
+# or open the file with EDITOR
+# appends the resulting action to the history
+function fuzzy-find () {
+    # acquire a target file or folder
+    target=$(fd ${@:1} | fzf)
+    # abort if no target was selected
+    if [ $? != 0 ]; then
+        return
+    fi
+    # perform a sensible opening command on target
+    if test -d $target; then
+        run_push "cd $target"
+    else
+        run_push "cd $(dirname $target)"
+        run_push "$EDITOR $(basename $target)"
+    fi
+}
+
+# fuzzy find and run a command from history
+# appends the resulting command from history
+function fuzzy-history () {
+    cmd=$(fc -n -l 1 | awk '!seen[$0]++' | fzf)
+    # return early if previous command failed
+    if [ $? != 0 ]; then
+        return
+    fi
+    run_push "$cmd"
+}
+
+# print a command, add it to the history, and run it
+function run_push () {
+    echo $1
+    print -s "$1"
+    eval $1
+}
+
+# find the git root of the current path
+function git-root () {
+    git_root=$(git rev-parse --show-superproject-working-tree)
+    if [ -z $git_root ]; then
+        git_root=$(git rev-parse --show-toplevel)
+    fi
+    echo $git_root
+}
+
+# find the root of a git repository or submodule
+function git-root-submodule () {
+    git_root=$(git rev-parse --show-toplevel)
+    echo $git_root
+}
+
+# find the closest occurrence of a file in some parent folder
+function find-in-ancestors () {
+    cd $(dirname "$2")
+    if [ -f "$(basename $1)" ]; then
+        printf '%s\n' "${PWD%/}/$1"
+    elif [ "$PWD" = / ]; then
+        false
+    else
+        (cd .. && find-in-ancestors "$1")
+    fi
+}

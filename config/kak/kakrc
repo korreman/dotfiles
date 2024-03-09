@@ -16,6 +16,7 @@ define-command -hidden enable-lsp %{
 # they are super heavy, so i don't want to accidentally fire them up
 map -docstring "enable LSP" global user l ": enable-lsp<ret>"
 declare-user-mode LSP_not_enabled
+
 map global normal . ": echo 'LSP not enabled'; enter-user-mode LSP_not_enabled<ret>"
 
 define-command -hidden -params 6 -override lsp-handle-progress %{
@@ -30,7 +31,9 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
 ##### COSMETICS #####
 colorscheme dracula
 
-eval %sh{kak-tree-sitter --kakoune --daemonize --server}
+eval %sh{kak-tree-sitter -dks --with-text-objects --session $kak_session}
+eval %sh{kak-recase --generate-config}
+map global user k ":recase<ret>"
 
 ### practical cosmetics ###
 # prompt positioned at top, remove clippy art, no mouse
@@ -170,6 +173,7 @@ map -docstring "show info for current position" global lsp E ': lsp-diagnostics<
 ### Miscellaneous
 map -docstring "jump backward" global goto z "<esc><c-o>"
 map -docstring "jump forward" global goto x "<esc><c-i>"
+map -docstring "line begin" global goto h "<esc>ghlh"
 
 ### Object selection
 map -docstring "select surrounding object" global normal m <a-a>
