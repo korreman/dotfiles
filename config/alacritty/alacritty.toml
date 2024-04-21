@@ -1,0 +1,50 @@
+import = ["/home/korreman/.config/alacritty/local_config.toml", "/home/korreman/.config/alacritty/dracula.toml"]
+ipc_socket = true
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mods = "Shift"
+
+#[[keyboard.bindings]]
+#action = "TogglePillars"
+#key = "P"
+#mods = "Shift|Control"
+
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = true
+title = "Terminal"
+
+[window.dimensions]
+columns = 106
+lines = 32
+
+#[window.pillars]
+#enable = true
+#justify = "left"
+#separator_width = 2
+#slack = 26
+#width = 106
