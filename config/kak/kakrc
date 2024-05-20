@@ -171,8 +171,8 @@ map -docstring "show info for current position" global lsp e %{: set-option buff
 map -docstring "show info for current position" global lsp E ': lsp-diagnostics<ret>'
 
 ### Miscellaneous
-map -docstring "jump backward" global goto z "<esc><c-o>"
-map -docstring "jump forward" global goto x "<esc><c-i>"
+map -docstring "jump backward" global goto u "<esc><c-o>"
+map -docstring "jump forward" global goto U "<esc><c-i>"
 map -docstring "line begin" global goto h "<esc>ghlh"
 
 ### Object selection
