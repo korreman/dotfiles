@@ -27,10 +27,10 @@ action = "ScrollPageDown"
 key = "PageDown"
 mods = "Shift"
 
-#[[keyboard.bindings]]
-#action = "TogglePillars"
-#key = "P"
-#mods = "Shift|Control"
+[[keyboard.bindings]]
+action = "TogglePillars"
+key = "P"
+mods = "Shift|Control"
 
 [window]
 decorations = "full"
@@ -42,9 +42,8 @@ title = "Terminal"
 columns = 106
 lines = 32
 
-#[window.pillars]
-#enable = true
-#justify = "left"
-#separator_width = 2
-#slack = 26
-#width = 106
+[window.pillars]
+enable = true
+separator_width = 2
+slack = 26
+width = 106

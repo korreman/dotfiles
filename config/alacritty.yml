@@ -34,12 +34,12 @@ window:
     columns: 106
     lines: 32
 
-  pillars:
-    enable: true
-    width: 106
-    slack: 26
-    justify: left
-    separator_width: 2
+  ##pillars:
+  ##  enable: true
+  ##  width: 106
+  ##  slack: 26
+  ##  justify: left
+  #  separator_width: 2
 
   # Window position (changes require restart)
   #
@@ -750,7 +750,7 @@ key_bindings:
   - { key: N, mods: Shift|Control, action: SpawnNewInstance }
   - { key: PageUp, mods: Shift, action: ScrollPageUp}
   - { key: PageDown, mods: Shift, action: ScrollPageDown}
-  - { key: P, mods: Shift|Control, action: TogglePillars}
+  #- { key: P, mods: Shift|Control, action: TogglePillars}
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }

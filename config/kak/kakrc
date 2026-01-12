@@ -3,6 +3,7 @@
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
+
 declare-option -hidden str lsp_modeline_progress ""
 define-command -hidden enable-lsp %{
     lsp-enable-window
@@ -22,7 +23,6 @@ map global normal . ": echo 'LSP not enabled'; enter-user-mode LSP_not_enabled<r
 define-command -hidden -params 6 -override lsp-handle-progress %{
     set global lsp_modeline_progress %sh{
         if ! "$6"; then
-            #echo "$2${5:+" ($5%)"}${4:+": $4"}"
             echo " ${5:+"$5%"}"
         fi
     }
@@ -31,8 +31,8 @@ define-command -hidden -params 6 -override lsp-handle-progress %{
 ##### COSMETICS #####
 colorscheme dracula
 
-eval %sh{kak-tree-sitter -dks --session $kak_session}
-eval %sh{kak-recase --generate-config}
+#eval %sh{kak-tree-sitter -dks --session $kak_session}
+#eval %sh{kak-recase --generate-config}
 map global user k ":recase<ret>"
 
 ### practical cosmetics ###
@@ -53,6 +53,8 @@ declare-option -hidden str ml_dirname
 hook global WinDisplay .* %{
     set window ml_filename %sh{basename "$kak_bufname"}
     set window ml_dirname %sh{dirname "$kak_bufname"}
+    # make it so kitty opens new clients in OS windows, not kitty splits
+    set-option window kitty_window_type "os-window"
 }
 
 # NOTE: Avoid putting anything other than vals and opts in the modeline.

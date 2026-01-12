@@ -59,9 +59,9 @@ set-face global DiagnosticError "default,%opt{red_bg}+g"
 #face global SnippetsOtherPlaceholders $black,$greyblue_bg
 
 # Builtin faces
-set-face global Default "%opt{white},%opt{black}"
+set-face global Default "%opt{white}"
 set-face global Prompt "%opt{black},%opt{green}"
-set-face global BufferPadding "%opt{black},%opt{black}"
+set-face global BufferPadding "%opt{black}"
 
 set-face global PrimarySelection "%opt{black},%opt{purple}+fg"
 set-face global PrimaryCursor "%opt{black},%opt{white}+fg"
@@ -84,9 +84,9 @@ set-face global StatusLineValue "%opt{orange},%opt{black}"
 set-face global StatusCursor "%opt{white},%opt{blue}"
 
 # Builtin highlighter faces
-set-face global LineNumbers "%opt{gray},%opt{black}"
+set-face global LineNumbers "%opt{gray}"
 set-face global LineNumberCursor "%opt{white},%opt{gray}+b"
-set-face global LineNumbersWrapped "%opt{black},%opt{black}"
+set-face global LineNumbersWrapped "%opt{black}"
 set-face global MatchingChar "%opt{white},%opt{blue}+fsb"
-set-face global Whitespace "%opt{gray},%opt{black}+f"
+set-face global Whitespace "%opt{gray}"
 set-face global WrapMarker 'Whitespace'
